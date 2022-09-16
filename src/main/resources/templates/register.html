@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <title>Pizza - registration</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" >
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nothing+You+Could+Do" rel="stylesheet">
+    <link href="../static/css/open-iconic-bootstrap.min.css" th:href="@{/css/open-iconic-bootstrap.min.css}" rel="stylesheet"> <link rel="stylesheet" href="../static/css/animate.css" th:href="@{css/animate.css}">
+    <link rel="stylesheet" href="../static/css/owl.carousel.min.css" th:href="@{/css/owl.carousel.min.css}">
+    <link rel="stylesheet" href="../static/css/owl.theme.default.min.css" th:href="@{/css/owl.theme.default.min.css}">
+    <link rel="stylesheet" href="../static/css/magnific-popup.css" th:href="@{/css/magnific-popup.css}">
+    <link rel="stylesheet" href="../static/css/aos.css" th:href="@{/css/aos.css}">
+    <link rel="stylesheet" href="../static/css/ionicons.min.css" th:href="@{/css/ionicons.min.css}">
+    <link rel="stylesheet" href="../static/css/bootstrap-datepicker.css" th:href="@{/css/bootstrap-datepicker.css}">
+    <link rel="stylesheet" href="../static/css/jquery.timepicker.css" th:href="@{/css/jquery.timepicker.css}">
+    <link rel="stylesheet"  href="../static/css/flaticon.css"  th:href="@{/css/flaticon.css}">
+    <link rel="stylesheet"  href="../static/css/icomoon.css" th:href="@{/css/icomoon.css}">
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous">
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/index}"><span class="flaticon-pizza-1 mr-1"></span>Oliv'Pizza<br><small>Authentic</small></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="oi oi-menu"></span> Menu
+        </button>
+        <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active"><a th:href="@{/index}" class="nav-link">ACCUEIL</a></li>
+                <li class="nav-item"><a th:href="@{/carte}" class="nav-link">CARTE</a></li>
+                <li class="nav-item"><a th:href="@{/engagement}" class="nav-link">ENGAGEMENTS</a></li>
+                <li class="nav-item"><a th:href="@{/menu}" class="nav-link">MENU</a></li>
+                <li class="nav-item"><a th:href="@{/contact}" class="nav-link">CONTACT</a></li>
+                <li class="nav-item"><a th:href="@{/login}" class="nav-link">CONNEXION</a></li>
+                <li class="nav-item"><a th:href="@{/register}" class="nav-link">CREER UN COMPTE</a></li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+
+            <div th:if="${param.success}">
+                <div class="alert alert-info">
+                    Votre compte a bien été crée !
+                </div>
+            </div>
+
+
+            <div class="col-md-12 appointment ftco-animate">
+                <h3 class="mb-3">Créer un compte</h3>
+                <form  method="post"
+                       role="form"
+                       th:action="@{/register/save}"
+                       th:object="${user}"
+                      class="appointment-form">
+                    <div class="d-md-flex">
+                        <div class="form-group">
+                            <input class="form-control"
+                                   id="firstName"
+                                   name="firstName"
+                                   placeholder="Nom"
+                                   th:field="*{firstName}"
+                                   type="text">
+                            <p th:errors = "*{firstName}" class="text-danger"
+                               th:if="${#fields.hasErrors('firstName')}"></p>
+                        </div>
+                    </div>
+                    <div class="d-me-flex">
+                        <div class="form-group">
+                            <input   class="form-control"
+                                     id="lastName"
+                                     name="lastName"
+                                     placeholder="Prénom"
+                                     th:field="*{lastName}"
+                                     type="text"
+                            />
+                            <p th:errors = "*{lastName}" class="text-danger"
+                               th:if="${#fields.hasErrors('lastName')}"></p>
+                        </div>
+                    </div>
+                    <div class="d-md-flex">
+                        <div class="form-group">
+                            <input class="form-control"
+                                   id="email"
+                                   name="email"
+                                   placeholder="Email"
+                                   th:field="*{email}"
+                                   type="email"
+                            />
+                            <p th:errors = "*{email}" class="text-danger"
+                               th:if="${#fields.hasErrors('email')}"></p>
+                        </div>
+                    </div>
+                    <div class="d-md-flex">
+                        <div class="form-group">
+                            <input class="form-control"
+                                   id="password"
+                                   name="password"
+                                   placeholder="Password"
+                                   th:field="*{password}"
+                                   type="password"
+                            />
+                            <p th:errors = "*{password}" class="text-danger"
+                               th:if="${#fields.hasErrors('password')}"></p>
+                        </div>
+                    </div>
+                    <div class="d-md-flex">
+                        <div class="form-group">
+                            <input class="form-control"
+                                   id="address"
+                                   name="address"
+                                   placeholder="Adresse Complète"
+                                   th:field="*{address}"
+                                   type="address"
+                            />
+                            <p th:errors = "*{address}" class="text-danger"
+                               th:if="${#fields.hasErrors('address')}"></p>
+                        </div>
+                    </div>
+                    <div class="d-md-flex">
+                        <div class="form-group">
+                            <input class="form-control"
+                                   id="tel"
+                                   name="tel"
+                                   placeholder="Téléphone"
+                                   th:field="*{tel}"
+                                   type="tel"
+                            />
+                            <p th:errors = "*{tel}" class="text-danger"
+                               th:if="${#fields.hasErrors('tel')}"></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary py-2 px-3">Validez</button>
+
+                        <span> Vous avez déjà un compte ?
+                                <a style="color: #fac564; text-decoration: none;" th:href="@{/login}">Connectez-vous !</a>
+                            </span>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+</br>
+</br>
+<footer class="ftco-footer ftco-section img">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-lg-3 col-md-6 mb-5 mb-md-5">
+                <div class="ftco-footer-widget mb-4">
+                    <h2 class="ftco-heading-2">About Us</h2>
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+                        <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                        <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                        <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-5 mb-md-5">
+                <div class="ftco-footer-widget mb-4">
+                    <h2 class="ftco-heading-2">Recent Blog</h2>
+                    <div class="block-21 mb-4 d-flex">
+                        <a class="blog-img mr-4" th:style="'background-image:url(' + @{/images/image_1.jpg} + ');'"></a>
+                        <div class="text">
+                            <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
+                            <div class="meta">
+                                <div><a href="#"><span class="icon-calendar"></span> Sept 15, 2018</a></div>
+                                <div><a href="#"><span class="icon-person"></span> Admin</a></div>
+                                <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="block-21 mb-4 d-flex">
+                        <a class="blog-img mr-4" th:style="'background-image:url(' + @{/images/image_2.jpg} + ');'"></a>
+                        <div class="text">
+                            <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
+                            <div class="meta">
+                                <div><a href="#"><span class="icon-calendar"></span> Sept 15, 2018</a></div>
+                                <div><a href="#"><span class="icon-person"></span> Admin</a></div>
+                                <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 mb-5 mb-md-5">
+                <div class="ftco-footer-widget mb-4 ml-md-4">
+                    <h2 class="ftco-heading-2">Services</h2>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="py-2 d-block">Cooked</a></li>
+                        <li><a href="#" class="py-2 d-block">Deliver</a></li>
+                        <li><a href="#" class="py-2 d-block">Quality Foods</a></li>
+                        <li><a href="#" class="py-2 d-block">Mixed</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5 mb-md-5">
+                <div class="ftco-footer-widget mb-4">
+                    <h2 class="ftco-heading-2">Have a Questions?</h2>
+                    <div class="block-23 mb-3">
+                        <ul>
+                            <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
+                            <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
+                            <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery-migrate-3.0.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.easing.1.3.js"></script>
+<script src="js/jquery.waypoints.min.js"></script>
+<script src="js/jquery.stellar.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/aos.js"></script>
+<script src="js/jquery.animateNumber.min.js"></script>
+<script src="js/bootstrap-datepicker.js"></script>
+<script src="js/jquery.timepicker.min.js"></script>
+<script src="js/scrollax.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

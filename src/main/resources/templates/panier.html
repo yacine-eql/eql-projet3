@@ -95,18 +95,16 @@
         <th >Quantité </th>
 
 
-
     </tr>
     </thead>
     <tbody>
     <tr  th:each="produit: ${produits?.keySet()}">
-        <th  th:text="${produit.label}"></td>
+        <th th:text="${produit.label}"></td>
         <td th:text="${produit.description}"></td>
-        <td style="color: #fac564" th:utext="${produit.prix} +'€'"> € </td>
+        <td th:utext="${produit.prix} +'€'"> € </td>
         <td th:text="${produits.get(produit)}"></td>
         <td ><a th:href="@{/add/{id}(id=${produit.getProduitId()})}" class="btn"><i class="fa fa-plus"></i></a></td>
         <td ><a th:href="@{/sous/{id}(id=${produit.getProduitId()})}" class="btn"><i class="fa fa-minus"></i></a></td>
-
 
 
     </tr>
@@ -115,8 +113,7 @@
 
 </table>
                 <div >
-
-                    <span  > Montant total : </span> <span style="color: #fac564" th:text="${total} +' €'" >
+                    <span style="color: #fac564" > Montant total : </span> <span th:text="${total} +' €'" >
                 </span>
 
                 </div>
@@ -126,8 +123,9 @@
                            role="form"
                            th:action="@{/validePanier}">
                     <button type="submit" class="btn btn-primary py-2 px-3">Validez</button>
-
+                        <a th:href="@{/carte}"  class="btn btn-white btn-outline-white py-2 px-3">Ajouter</a>
                     </form>
+
                 </div>
 
 

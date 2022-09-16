@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
+import java.util.ArrayList;
 import java.util.HashMap;
-
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -69,7 +69,9 @@ public class PanierController {
                 total += produit.getPrix();
                 session.setAttribute("total",total);
 
-
+                for (Produit key: panier.keySet()) {
+                    System.out.println(key + "=" + panier.get(key));
+                }
             }
 
         }
@@ -86,8 +88,12 @@ public class PanierController {
         }
         Map<Produit,Integer> panier = (Map<Produit, Integer>) session.getAttribute("panier");
         Double total = (Double) session.getAttribute("total");
+        if (panier == null) {
+            total = 0.0;
+        }
 
 
+        System.out.println("voir : "+panier);
         model.addAttribute("produits",panier);
         model.addAttribute("total",total);
 
@@ -108,10 +114,8 @@ public class PanierController {
         model.addAttribute("total",total);
         commandeService.ajoueCommande(user,total,panier);
 
-        return "carte";
+        return "redirect:/space?success";
     }
-
-
 
     @GetMapping("/add/{id}")
     public  String addCart(@PathVariable(value = "id") int id,Model model, HttpServletRequest request,
@@ -126,11 +130,11 @@ public class PanierController {
         Double total = (Double) session.getAttribute("total");
 
 
-            Produit produit = produitService.getProduitById(id);
-                panier.put(produit, panier.get(produit) + 1);
-                session.setAttribute("panier",panier);
-                total += produit.getPrix();
-                session.setAttribute("total",total);
+        Produit produit = produitService.getProduitById(id);
+        panier.put(produit, panier.get(produit) + 1);
+        session.setAttribute("panier",panier);
+        total += produit.getPrix();
+        session.setAttribute("total",total);
 
 
         return "redirect:/voirPanier";
@@ -149,22 +153,24 @@ public class PanierController {
         Double total = (Double) session.getAttribute("total");
 
 
-            Produit produit = produitService.getProduitById(id);
-            if (panier.get(produit)>0){
+        Produit produit = produitService.getProduitById(id);
+        if (panier.get(produit)>1){
 
-                panier.put(produit, panier.get(produit) - 1);
-                session.setAttribute("panier",panier);
-                total -= produit.getPrix();
-                session.setAttribute("total",total);
+            panier.put(produit, panier.get(produit) - 1);
+            session.setAttribute("panier",panier);
+            total -= produit.getPrix();
+            session.setAttribute("total",total);
 
-            }else {
-                panier.remove(produit);
-                session.setAttribute("panier",panier);
-                total -= produit.getPrix();
-                session.setAttribute("total",total);
+        }else {
+            panier.remove(produit);
+            session.setAttribute("panier",panier);
+            total -= produit.getPrix();
+            session.setAttribute("total",total);
 
-                }
+        }
         return "redirect:/voirPanier";
     }
+
+
 
 }
