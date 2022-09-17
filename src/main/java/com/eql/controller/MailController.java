@@ -38,7 +38,7 @@ public class MailController {
             }
 
             emailSenderService.sendSimpleEmail(userDto1.getEmail() + " Sujet : " + userDto1.getLastName(),userDto1.getAddress());
-            return "contact";
+            return "redirect:/contact?success";
         }
     }
 
