@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
+
 import java.util.List;
 
 @Controller
@@ -56,7 +56,7 @@ public class AuthController {
     public String registration(@Valid @ModelAttribute("user") UserDto userDto, BindingResult result, Model model){
         User existingUser = userService.findUserByEmail(userDto.getEmail());
         if (existingUser!= null && existingUser.getEmail() !=null){
-            result.rejectValue("email",null,"Email already in use");
+            result.rejectValue("email",null,"Cet email existe deja !");
 
         }
         if(result.hasErrors()){
@@ -112,6 +112,8 @@ public class AuthController {
             UserDto userDto = userService.mapToUserDto(userService.findUserByEmail(currentUser.getUsername()));
             model.addAttribute("connectedUser", userDto);
         }
+        UserDto user =new UserDto();
+        model.addAttribute("user",user);
         return "contact";
     }
 

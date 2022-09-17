@@ -81,24 +81,24 @@
       <div class="col-md-1"></div>
       <div class="col-md-6 ftco-animate">
         <h2 class="h4">Contactez nous</h2>
-        <form action="#" class="contact-form">
+        <form  method="post"
+               role="form"
+               th:action="@{/mail}"
+               th:object="${user}" class="contact-form">
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Nom">
+                <input type="text" class="form-control" placeholder="Email" th:field="*{email}">
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Email">
-              </div>
-            </div>
+
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Sujet">
+            <input type="text" class="form-control" placeholder="Sujet" th:field="*{lastName}">
           </div>
           <div class="form-group">
-            <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
+            <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message" th:field="*{address}">
+            </textarea >
           </div>
           <div class="form-group">
             <input type="submit" value="Validez" class="btn btn-primary py-2 px-4">
