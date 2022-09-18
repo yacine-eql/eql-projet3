@@ -31,14 +31,14 @@
         </button>
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active"><a th:href="@{/index}" class="nav-link">ACCUEIL</a></li>
-                <li class="nav-item"><a th:href="@{/carte}" class="nav-link">CARTE</a></li>
-                <li class="nav-item"><a th:href="@{/engagement}" class="nav-link">ENGAGEMENTS</a></li>
-                <li class="nav-item"><a th:href="@{/menu}" class="nav-link">MENU</a></li>
-                <li class="nav-item"><a th:href="@{/contact}" class="nav-link">CONTACT</a></li>
-                <li sec:authorize="!hasRole('USER')&&!hasRole('ADMIN')" class="nav-item"><a th:href="@{/login}" class="nav-link">CONNEXION</a></li>
-                <li sec:authorize="hasRole('USER')" class="nav-item"><a th:href="@{/space}" class="nav-link">MON ESPACE</a></li>
-                <li sec:authorize="hasRole('ADMIN')" class="nav-item"><a th:href="@{/adminSpace}" class="nav-link">ADMIN ESPACE</a></li>
+                <li class="nav-item active"><a th:href="@{/index}" class="nav-link"><span class=" icon fa fa-home"> </span> <span class="text"> ACCUEIL </span> </a></li>
+                <li class="nav-item"><a th:href="@{/carte}" class="nav-link"><span class=" icon fa fa-list"> </span> <span class="text"> CARTE </span></a></li>
+                <li class="nav-item"><a th:href="@{/engagement}" class="nav-link"> <span class=" icon fa fa-check"> </span> <span class="text"> ENGAGEMENTS </span></a></li>
+
+                <li class="nav-item "><a th:href="@{/contact}" class= "nav-link "> <span class=" icon fa fa-envelope"> </span> <span class="text"> CONTACT </span></a></li>
+                <li sec:authorize="!hasRole('USER')&&!hasRole('ADMIN')" class="nav-item"><a th:href="@{/login}" class="nav-link"> CONNEXION</a></li>
+                <li sec:authorize="hasRole('USER')" class="nav-item"><a th:href="@{/space}" class="nav-link"><span class=" icon fa fa-cloud"> </span> <span class="text"> MON ESPACE </span> </a></li>
+                <li sec:authorize="hasRole('ADMIN')" class="nav-item"><a th:href="@{/adminSpace}" class="nav-link"><span class=" icon fa fa-cloud"> </span> <span class="text"> ESPACE ADMIN </span>  </a></li>
                 <li sec:authorize="!hasRole('USER')&&!hasRole('ADMIN')" class="nav-item"><a th:href="@{/register}" class="nav-link">CREER UN COMPTE</a></li>
                 <li sec:authorize="hasRole('USER')||hasRole('ADMIN')" class="nav-item"><a th:href="@{/logout}" class="nav-link "><span class=" icon fa fa-sign-out"> </span> <span class="text"> SE DECONNECTER </span> </a></li>
                 <li sec:authorize="hasRole('USER')||hasRole('ADMIN')" class=" nav-item"><a href="#"class="nav-link"><span class=" icon icon-user"></span> <span class="text" th:text="${connectedUser.firstName}"> </span></a></li>
