@@ -17,7 +17,13 @@ public interface UserService {
 
     User findUserByEmail(String email);
 
+    User findUserById(long id);
+
     List<UserDto> findAllUser();
 
-    public UserDto mapToUserDto (User user);
+     UserDto mapToUserDto (User user);
+
+     void saveUserUpdate(UserDto userDto);
+
+     void deleteUser(Long id);
 }

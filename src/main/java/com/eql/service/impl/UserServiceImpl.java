@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -68,6 +69,25 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
+    @Override
+    public void saveUserUpdate(UserDto userDto) {
+        User user = userRepository.findById(userDto.getId()).get();
+        user.setName(userDto.getFirstName() + " " + userDto.getLastName());
+        user.setEmail(userDto.getEmail());
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        user.setAddress(userDto.getAddress());
+        user.setTel((userDto.getTel()));
+        userRepository.save(user);
+    }
+
+    @Override
+    public void deleteUser(Long id) {
+        User user = userRepository.findById(id).get();
+
+        user.getRoles().remove(0);
+        userRepository.deleteById(id);
+    }
+
     private Role checkRoleExist() {
         Role role =new Role();
         role.setName("ROLE_USER");
@@ -77,6 +97,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findUserByEmail(String email) {
         return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public User findUserById(long id) {
+        return userRepository.findById(id).get();
     }
 
     @Override
@@ -92,11 +117,13 @@ public class UserServiceImpl implements UserService {
     public UserDto mapToUserDto (User user) {
         UserDto userDto= new UserDto() ;
         String [] str = user.getName().split(" ");
+        userDto.setId(user.getId());
         userDto.setFirstName(str[0]);
         userDto.setLastName(str[1]);
         userDto.setEmail(user.getEmail());
         userDto.setAddress(user.getAddress());
         userDto.setTel(user.getTel());
+
         return userDto;
     }
 

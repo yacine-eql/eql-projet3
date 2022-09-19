@@ -1,26 +1,27 @@
 package com.eql.controller;
 
+import com.eql.config.SpringSecurity;
 import com.eql.dto.UserDto;
 import com.eql.model.Commande;
 import com.eql.model.Produit;
 import com.eql.model.User;
-
 import com.eql.service.CommandeService;
 import com.eql.service.ProduitService;
 import com.eql.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-
 import java.util.List;
 
 @Controller
@@ -43,6 +44,8 @@ public class AuthController {
         }
         return "index";
     }
+
+
 
     @GetMapping("/register")
     public String showRegistrationfrom(Model model){
@@ -137,4 +140,42 @@ public class AuthController {
         }return "adminProd";
     }
 
+    @RequestMapping("/updateAccount")
+    public String showUpdatefrom(Model model, @AuthenticationPrincipal UserDetails currentUser ) {
+        UserDto userDto = userService.mapToUserDto(userService.findUserByEmail(currentUser.getUsername()));
+        model.addAttribute("connectedUser", userDto);
+        System.out.println( userDto.getAddress() );
+        return "updateAccount";
+    }
+
+
+
+    @PostMapping("/update/save")
+    public String updateUser(@ModelAttribute("connectedUser") UserDto userDto){
+
+        userService.saveUserUpdate(userDto);
+
+        return "redirect:/space?update";
+
+    }
+
+    @RequestMapping("/deletePage")
+    public String showDeletePage(Model model, @AuthenticationPrincipal UserDetails currentUser ) {
+        UserDto userDto = userService.mapToUserDto(userService.findUserByEmail(currentUser.getUsername()));
+        model.addAttribute("connectedUser", userDto);
+        return "deletePage";
+    }
+
+    @GetMapping("/delete")
+    public  String deleteUser(@AuthenticationPrincipal UserDetails currentUser, HttpServletRequest request, HttpServletResponse response ){
+        UserDto userDto = userService.mapToUserDto(userService.findUserByEmail(currentUser.getUsername()));
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null)
+            new SecurityContextLogoutHandler().logout(request, response, authentication);
+
+
+        userService.deleteUser(userDto.getId());
+
+        return "redirect:/login?delete";
+    }
 }

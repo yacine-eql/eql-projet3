@@ -1,54 +1,18 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org" >
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
-    <title>Pizza - Free Bootstrap 4 Template by Colorlib</title>
+    <title>Pizza - login</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" >
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Nothing+You+Could+Do" rel="stylesheet">
-    <link href="../static/css/open-iconic-bootstrap.min.css" th:href="@{/css/open-iconic-bootstrap.min.css}" rel="stylesheet"> <link rel="stylesheet" href="../static/css/animate.css" th:href="@{css/animate.css}">
-    <link rel="stylesheet" href="../static/css/owl.carousel.min.css" th:href="@{/css/owl.carousel.min.css}">
-    <link rel="stylesheet" href="../static/css/owl.theme.default.min.css" th:href="@{/css/owl.theme.default.min.css}">
-    <link rel="stylesheet" href="../static/css/magnific-popup.css" th:href="@{/css/magnific-popup.css}">
-    <link rel="stylesheet" href="../static/css/aos.css" th:href="@{/css/aos.css}">
-    <link rel="stylesheet" href="../static/css/ionicons.min.css" th:href="@{/css/ionicons.min.css}">
-    <link rel="stylesheet" href="../static/css/bootstrap-datepicker.css" th:href="@{/css/bootstrap-datepicker.css}">
-    <link rel="stylesheet" href="../static/css/jquery.timepicker.css" th:href="@{/css/jquery.timepicker.css}">
-    <link rel="stylesheet"  href="../static/css/flaticon.css"  th:href="@{/css/flaticon.css}">
-    <link rel="stylesheet"  href="../static/css/icomoon.css" th:href="@{/css/icomoon.css}">
-    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-          crossorigin="anonymous">
 
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-    <div class="container">
-        <a class="navbar-brand" th:href="@{/index}"><span class="flaticon-pizza-1 mr-1"></span>Oliv'Pizza<br><small>Authentic</small></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="oi oi-menu"></span> Menu
-        </button>
-        <div class="collapse navbar-collapse" id="ftco-nav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active"><a th:href="@{/index}" class="nav-link">ACCUEIL</a></li>
-                <li class="nav-item"><a th:href="@{/carte}" class="nav-link">CARTE</a></li>
-                <li class="nav-item"><a th:href="@{/engagement}" class="nav-link">ENGAGEMENTS</a></li>
-                <li class="nav-item"><a th:href="@{/menu}" class="nav-link">MENU</a></li>
-                <li class="nav-item"><a th:href="@{/contact}" class="nav-link">CONTACT</a></li>
-                <li class="nav-item"><a th:href="@{/login}" class="nav-link">CONNEXION</a></li>
-                <li class="nav-item"><a th:href="@{/register}" class="nav-link">CREER UN COMPTE</a></li>
-
-            </ul>
-        </div>
-    </div>
-</nav>
-<!-- END nav -->
+<div layout:fragment="content">
 <br /><br />
 <div class="container">
     <div class="row">
@@ -58,11 +22,16 @@
                 <div class="alert alert-danger">Email et/ou Password invalide !</div>
             </div>
             <div th:if="${param.logout}">
-                <div class="alert alert-success"> Vous êtes bien déconnecté.</div>
+                <div class="alert alert-warning"> Vous êtes bien déconnecté.</div>
             </div>
             <div th:if="${param.success}">
-                <div class="alert alert-info">
+                <div class="alert alert-warning">
                     Votre compte a bien été crée !
+                </div>
+            </div>
+            <div th:if="${param.delete}">
+                <div class="alert alert-warning">
+                    Votre compte a bien été supprimé !
                 </div>
             </div>
 
@@ -76,6 +45,7 @@
                                 <div class="form-group">
                                     <input type="text"
                                            id="username"
+                                           required="required"
                                            name="username"
                                            class="form-control"
                                            placeholder="Email">
@@ -85,6 +55,7 @@
                                 <div class="form-group">
                                     <input  type="password"
                                             id="password"
+
                                             name="password"
                                             class="form-control"
                                             placeholder="Password">
@@ -105,88 +76,7 @@
 
     </div>
 </div>
-</br>
-</br>
-<footer class="ftco-footer ftco-section img">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row mb-5">
-            <div class="col-lg-3 col-md-6 mb-5 mb-md-5">
-                <div class="ftco-footer-widget mb-4">
-                    <h2 class="ftco-heading-2">Oliv'pizza</h2>
-                    <p>Livraison de pizza à domicile </p>
-                    <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
-                        <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                        <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                        <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-5 mb-md-5">
-                <div class="ftco-footer-widget mb-4">
-                    <h2 class="ftco-heading-2">Horaires d'ouverture</h2>
-                    <div class="block-21 mb-4 d-flex">
-                        <a class="blog-img mr-4" th:style="'background-image:url(' + @{/images/pizza-1.jpg} + ');'"></a>
-                        <div class="text">
-                            <h3 class="heading"><a href="#">Lundi-Vendredi : 11h-14h | 18h-23h</a></h3>
-                            <h3 class="heading"><a href="#">Samedi : 12h-15h | 17h-23h</a></h3>
-                            <h3 class="heading"><a href="#">Dimanche : 18h-23h </a></h3>
-                            <h3 class="heading"><a href="#">Fermé les jours fériés </a></h3>
-
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="col-lg-2 col-md-6 mb-5 mb-md-5">
-                <div class="ftco-footer-widget mb-4 ml-md-4">
-                    <h2 class="ftco-heading-2">Services</h2>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="py-2 d-block">Pizza</a></li>
-                        <li><a href="#" class="py-2 d-block">Livraisons</a></li>
-                        <li><a href="#" class="py-2 d-block">Suivi</a></li>
-
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-5 mb-md-5">
-                <div class="ftco-footer-widget mb-4">
-                    <h2 class="ftco-heading-2">Nous contacter </h2>
-                    <div class="block-23 mb-3">
-                        <ul>
-                            <li><span class="icon icon-map-marker"></span><span class="text">210 Rue La fayette 75010 PARIS</span></li>
-                            <li><a href="#"><span class="icon icon-phone"></span><span class="text">0140433592</span></a></li>
-                            <li><a href="#"><span class="icon icon-envelope"></span><span class="text">yacine.saib@gmail.com</span></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12 text-center">
-
-
-            </div>
-        </div>
-    </div>
-</footer>
-
-
-<script src="js/jquery.min.js"></script>
-<script src="js/jquery-migrate-3.0.1.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery.easing.1.3.js"></script>
-<script src="js/jquery.waypoints.min.js"></script>
-<script src="js/jquery.stellar.min.js"></script>
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/jquery.magnific-popup.min.js"></script>
-<script src="js/aos.js"></script>
-<script src="js/jquery.animateNumber.min.js"></script>
-<script src="js/bootstrap-datepicker.js"></script>
-<script src="js/jquery.timepicker.min.js"></script>
-<script src="js/scrollax.min.js"></script>
-
-<script src="js/main.js"></script>
+<br /><br />
+</div>
 </body>
 </html>

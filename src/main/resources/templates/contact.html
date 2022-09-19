@@ -48,7 +48,7 @@
 
 
         <div th:if="${param.success}">
-          <div class="alert alert-info">
+          <div class="alert alert-danger">
             Votre message a bien été envoyé !
           </div>
         </div>
@@ -62,16 +62,16 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Email" th:field="*{email}">
+                <input type="text" class="form-control" required="required" placeholder="Email" th:field="*{email}">
               </div>
             </div>
 
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Sujet" th:field="*{lastName}">
+            <input type="text" class="form-control" required="required" placeholder="Sujet" th:field="*{lastName}">
           </div>
           <div class="form-group">
-            <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message" th:field="*{address}">
+            <textarea name="" id="" cols="30" rows="7" class="form-control" required="required" placeholder="Message" th:field="*{address}">
             </textarea >
           </div>
           <div class="form-group">

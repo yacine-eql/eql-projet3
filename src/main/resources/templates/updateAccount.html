@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+  <title>Compte - modification</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+</head>
+<body>
+<div layout:fragment="content">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+
+
+
+        <div class="col-md-12 appointment ftco-animate">
+          <h3 class="mb-3">Modifier mon compte</h3>
+          <form  method="post"
+                 role="form"
+                 th:action="@{/update/save}"
+                 th:object="${connectedUser}"
+                 class="appointment-form">
+            <div class="d-md-flex">
+
+              <div class="form-group">
+                <input class="form-control"
+                       id="firstName"
+                       name="firstName"
+                       required="required"
+                       placeholder="Prénom"
+                       th:field="*{firstName}"
+                       type="text">
+
+                <p th:errors = "*{firstName}" class="text-danger"
+                   th:if="${#fields.hasErrors('firstName')}"></p>
+
+                <input class="form-control"
+                       id="id"
+                       name="id"
+                       placeholder="Nom"
+                       th:field="*{id}"
+                       type="hidden">
+
+              </div>
+            </div>
+            <div class="d-me-flex">
+              <div class="form-group">
+                <input   class="form-control"
+                         id="lastName"
+                         name="lastName"
+                         required="required"
+                         placeholder="Nom"
+                         th:field="*{lastName}"
+                         type="text"
+                />
+                <p th:errors = "*{lastName}" class="text-danger"
+                   th:if="${#fields.hasErrors('lastName')}"></p>
+              </div>
+            </div>
+            <div class="d-md-flex">
+              <div class="form-group">
+                <input class="form-control"
+                       id="email"
+                       required="required"
+                       name="email"
+                       placeholder="Email"
+                       th:field="*{email}"
+                       type="email"
+                />
+                <p th:errors = "*{email}" class="text-danger"
+                   th:if="${#fields.hasErrors('email')}"></p>
+              </div>
+            </div>
+            <div class="d-md-flex">
+              <div class="form-group">
+                <input class="form-control"
+                       id="password"
+                       name="password"
+                       required="required"
+                       placeholder="Password"
+                       th:field="*{password}"
+                       type="password"
+                />
+                <p th:errors = "*{password}" class="text-danger"
+                   th:if="${#fields.hasErrors('password')}"></p>
+              </div>
+            </div>
+            <div class="d-me-flex">
+              <div class="form-group">
+                <input   class="form-control"
+                         id="adress"
+                         name="adress"
+                         required="required"
+                         placeholder="Adresse complète"
+                         th:field="*{address}"
+                         type="text"
+                />
+                <p th:errors = "*{address}" class="text-danger"
+                   th:if="${#fields.hasErrors('address')}"></p>
+              </div>
+            </div>
+            <div class="d-md-flex">
+              <div class="form-group">
+                <input class="form-control"
+                       id="tel"
+                       name="tel"
+                       required="required"
+                       placeholder="Téléphone"
+                       th:field="*{tel}"
+                       type="tel"
+                />
+                <p th:errors = "*{tel}" class="text-danger"
+                   th:if="${#fields.hasErrors('tel')}"></p>
+              </div>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary py-2 px-3">Validez</button>
+              <a th:href="@{/space}" class="btn btn-white btn-outline-white py-2 px-3 ">Annuler</a>
+
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <br /><br />
+</div>
+</body>
+</html>

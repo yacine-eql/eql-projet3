@@ -34,8 +34,11 @@ public class SpringSecurity {
                .antMatchers("/adminProd").hasRole("ADMIN")
                .antMatchers("/adminSpace").hasRole("ADMIN")
                .antMatchers("/space").hasRole("USER")
-               .antMatchers("/voirPanier").hasRole("USER")
+               .antMatchers("/voirPanier").hasAnyRole("USER","ADMIN")
                .antMatchers("/add/{id}").hasRole("USER")
+               .antMatchers("/updateAccount").hasAnyRole("USER","ADMIN")
+               .antMatchers("/deletePage").hasAnyRole("USER","ADMIN")
+               .antMatchers("/index1").permitAll()
 
 
 
@@ -57,6 +60,7 @@ public class SpringSecurity {
         return http.build();
 
     }
+
 }
 
 

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Pizza - space</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+</head>
+<body>
+<div layout:fragment="content">
+
+    <section style="margin-top: -3rem;" class="ftco-section contact-section">
+        <div class="container mt-5">
+            <div class="row block-9">
+                <div class="col-md-3 contact-info ftco-animate">
+                    <div class="row">
+                        <div class="col-md-12 mb-4">
+                            <h2 style="color: white" class="h4">Mes informations</h2>
+                        </div>
+
+                        <div class="col-md-12 mb-3">
+                            <p><span>Nom : </span> <a style="color: #fac564; text-decoration: none;" th:text="${connectedUser.lastName}" href="tel://1234567920"></a></p>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <p><span>Prénom : </span> <a style="color: #fac564; text-decoration: none;" th:text="${connectedUser.firstName}"  href="tel://1234567920"></a></p>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <p><span>Email : </span> <a style="color: #fac564; text-decoration: none;" th:text="${connectedUser.email}" href="mailto:info@yoursite.com"></a></p>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <p><span>Adresse : </span> <a style="color: #fac564; text-decoration: none;" th:text="${connectedUser.address}" href="mailto:info@yoursite.com"></a></p>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <p><span>Téléphone :</span> <a style="color: #fac564; text-decoration: none;" th:text="${connectedUser.tel}" href="mailto:info@yoursite.com"></a></p>
+                        </div>
+
+                        <div class="col-md-12 mb-3">
+                            <p><span>Website :</span> <a style="color: #fac564; text-decoration: none;" href="#">Oliv'pizza</a></p>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="col-md-1"></div>
+
+                <div class="col-md-8 ftco-animate">
+                    <div th:if="${param.success}">
+                        <div class="alert alert-info">
+                            Votre Commande a bien été validé, nous vous livrons au plus vite !
+                        </div>
+
+                    </div>
+                    <h2 style="color: white" class="h4">Etes-vous sûr de vouloir supprimer votre compte !</h2>
+                    <br /> <br />
+
+                    <div class="col-md-12 mb-3">
+                        <a th:href="@{/delete}" class="btn btn-primary py-2 px-3">Supprimer</a>
+                        <a th:href="@{/space}" class="btn btn-white btn-outline-white py-2 px-3 ">Annuler</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -37,12 +37,12 @@
         </button>
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active"><a th:href="@{/index}" class="nav-link">ACCEUIL</a></li>
-                <li class="nav-item"><a th:href="@{/carte}" class="nav-link">CARTE</a></li>
-                <li class="nav-item"><a th:href="@{/menu}" class="nav-link">MENU</a></li>
+                <li class="nav-item active"><a th:href="@{/index}" class="nav-link"><span class=" icon fa fa-home"> </span> <span class="text"> ACCUEIL </span> </a></li>
+                <li class="nav-item"><a th:href="@{/adminProd}" class="nav-link"><span class=" icon fa fa-list"> </span> <span class="text"> PRODUITS </span></a></li>
+                <li class="nav-item"><a th:href="@{/adminProd}" class="nav-link"><span class=" icon fa fa-list"> </span> <span class="text"> COMMANDES </span></a></li>
+                <li class="nav-item"><a th:href="@{/adminSpace}" class="nav-link"><span class=" icon fa fa-list"> </span> <span class="text"> CLIENTS </span></a></li>
                 <li  class="nav-item"><a th:href="@{/logout}" class="nav-link "><span class=" icon fa fa-sign-out"> </span> <span class="text"> SE DECONNECTER </span> </a></li>
                 <li  class=" nav-item"><a href="#"class="nav-link"><span class=" icon icon-user"></span> <span class="text" th:text="${connectedUser.firstName}"> </span></a></li>
-
 
             </ul>
         </div>
@@ -67,14 +67,16 @@
                     <div class="col-md-12 mb-3">
                         <a style="color: #fac564; text-decoration: none;" th:href="@{/adminProd}">Liste des Produits</a>
                     </div>
-
+                    <div class="col-md-12 mb-3">
+                    <button style="text-align:center;" type="submit" class="btn btn-primary py-2 px-3">Ajouter un produit</button>
+                </div>
                 </div>
             </div>
 
             <div class="col-md-1"></div>
 
             <div class="col-md-8 ftco-animate">
-                <h2 style="color: white" class="h3">Liste des Clients</h2>
+                <h2 style="color: white" class="h3">Liste des Produits</h2>
                 <input class="form-control"  type="text" id="myInput" onkeyup="myFunction()" placeholder="Rechecher.." >
 
                 <table id="myTable" style="color: #adb5bd" class="table">
@@ -99,7 +101,7 @@
                         <td> <button type="submit" class="btn btn-primary py-1 px-2">Modifier</button> </td>
                         <td> <button type="submit" class="btn btn-primary py-1 px-2">Supprimer</button> </td>
                     </tr>
-                    <td>  <button style="text-align:center;" type="submit" class="btn btn-primary py-1 px-2">Ajouter un produit</button> </td>
+
                     </tbody>
                 </table>
             </div>
