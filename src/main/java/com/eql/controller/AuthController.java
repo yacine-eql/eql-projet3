@@ -73,15 +73,16 @@ public class AuthController {
 
 
     @GetMapping("/adminSpace")
-    public String users(Model model,Model model1,@AuthenticationPrincipal UserDetails currentUser) {
+    public String users(Model model,@AuthenticationPrincipal UserDetails currentUser) {
         List<UserDto> users = userService.findAllUser();
         model.addAttribute("users", users);
         if (currentUser != null) {
             UserDto userDto = userService.mapToUserDto(userService.findUserByEmail(currentUser.getUsername()));
-            model1.addAttribute("connectedUser", userDto);
+            model.addAttribute("connectedUser", userDto);
 
         }return "adminSpace";
     }
+
     @GetMapping("/login")
     public String login(){
         return "login";
@@ -144,7 +145,6 @@ public class AuthController {
     public String showUpdatefrom(Model model, @AuthenticationPrincipal UserDetails currentUser ) {
         UserDto userDto = userService.mapToUserDto(userService.findUserByEmail(currentUser.getUsername()));
         model.addAttribute("connectedUser", userDto);
-        System.out.println( userDto.getAddress() );
         return "updateAccount";
     }
 

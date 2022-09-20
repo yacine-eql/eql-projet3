@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout}">
 <head>
@@ -121,8 +122,8 @@
             </div>
             <div class="form-group">
               <button type="submit" class="btn btn-primary py-2 px-3">Validez</button>
-              <a th:href="@{/space}" class="btn btn-white btn-outline-white py-2 px-3 ">Annuler</a>
-
+              <a sec:authorize="hasRole('USER')" th:href="@{/space}" class="btn btn-white btn-outline-white py-2 px-3 ">Annuler</a>
+            </div>
           </form>
         </div>
       </div>

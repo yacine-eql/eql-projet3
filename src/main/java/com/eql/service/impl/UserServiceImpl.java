@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -108,11 +109,46 @@ public class UserServiceImpl implements UserService {
     public List<UserDto> findAllUser() {
         List<User> users = userRepository.findAll();
 
+        users.remove(userRepository.findByEmail("admin@gmail.com"));
+        return users.stream()
+                .map( user -> mapToUserDto(user))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<UserDto> findAllNewUsers() {
+        List<User> users = userRepository.findAll();
+
+        for (Iterator<User> it = users.iterator(); it.hasNext();) {
+            User s = it.next();
+
+            if (!s.getCommandes().isEmpty()){
+                it.remove();
+            }
+        }
 
         return users.stream()
                 .map( user -> mapToUserDto(user))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<UserDto> findTopUsers() {
+        List<User> users = userRepository.findAll();
+
+        for (Iterator<User> it = users.iterator(); it.hasNext();) {
+            User s = it.next();
+
+            if (s.getCommandes().size() < 5){
+                it.remove();
+            }
+        }
+
+        return users.stream()
+                .map( user -> mapToUserDto(user))
+                .collect(Collectors.toList());
+    }
+
 
     public UserDto mapToUserDto (User user) {
         UserDto userDto= new UserDto() ;

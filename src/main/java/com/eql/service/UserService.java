@@ -21,6 +21,13 @@ public interface UserService {
 
     List<UserDto> findAllUser();
 
+    List<UserDto> findAllNewUsers();
+
+    List<UserDto> findTopUsers();
+
+
+
+
      UserDto mapToUserDto (User user);
 
      void saveUserUpdate(UserDto userDto);
