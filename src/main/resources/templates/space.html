@@ -72,14 +72,12 @@
                         <th>Numéro de commande</th>
                         <th>Date de commande</th>
                         <th>Produits</th>
-
                         <th>Montant</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each = "commande : ${commandes}">
                         <td th:text = "${commande.commandeId}"></td>
-
                         <td th:text = "${#dates.format(commande.commandeDate, 'dd-MMM-yyyy')}">
                         <td th:text = "${commande.getLigneComs()}"></td>
                         <td th:text = "${commande.facture.montant+ '€'}"></td>

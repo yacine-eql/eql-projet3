@@ -131,15 +131,16 @@ public class AuthController {
     }
 
     @GetMapping("/adminProd")
-    public String produits(Model model,Model model1,@AuthenticationPrincipal UserDetails currentUser) {
+    public String produits(Model model,@AuthenticationPrincipal UserDetails currentUser) {
         List<Produit> produits = produitService.getAllProduct();
         model.addAttribute("produits", produits);
         if (currentUser != null) {
             UserDto userDto = userService.mapToUserDto(userService.findUserByEmail(currentUser.getUsername()));
-            model1.addAttribute("connectedUser", userDto);
+            model.addAttribute("connectedUser", userDto);
 
         }return "adminProd";
     }
+
 
     @RequestMapping("/updateAccount")
     public String showUpdatefrom(Model model, @AuthenticationPrincipal UserDetails currentUser ) {
@@ -148,15 +149,10 @@ public class AuthController {
         return "updateAccount";
     }
 
-
-
     @PostMapping("/update/save")
     public String updateUser(@ModelAttribute("connectedUser") UserDto userDto){
-
         userService.saveUserUpdate(userDto);
-
         return "redirect:/space?update";
-
     }
 
     @RequestMapping("/deletePage")
@@ -172,10 +168,7 @@ public class AuthController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null)
             new SecurityContextLogoutHandler().logout(request, response, authentication);
-
-
         userService.deleteUser(userDto.getId());
-
         return "redirect:/login?delete";
     }
 }

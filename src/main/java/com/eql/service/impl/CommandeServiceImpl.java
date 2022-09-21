@@ -70,5 +70,15 @@ public class CommandeServiceImpl implements CommandeService {
         return user.getCommandes();
     }
 
+    @Override
+    public Commande getComById(Integer id) {
+        return commandeRepository.findById(id).get();
+    }
+
+    @Override
+    public void saveCom(Commande com) {
+        commandeRepository.save(com);
+    }
+
 
 }

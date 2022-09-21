@@ -22,13 +22,13 @@ public class prodController {
     ProduitService produitService;
 
     @GetMapping("/carte")
-    public String products(Model model,Model model1,@AuthenticationPrincipal UserDetails currentUser){
+    public String products(Model model,@AuthenticationPrincipal UserDetails currentUser){
 
         List<Produit> carte = produitService.getAllProduct();
         model.addAttribute("carte",carte);
         if (currentUser != null){
             UserDto userDto = userService.mapToUserDto(userService.findUserByEmail(currentUser.getUsername()));
-            model1.addAttribute("connectedUser", userDto);
+            model.addAttribute("connectedUser", userDto);
 
     }
         return "carte";

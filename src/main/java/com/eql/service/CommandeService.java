@@ -14,6 +14,8 @@ public interface CommandeService {
 
     List<Commande> getAll();
     List<Commande> getcommandeByUser(User user);
+    Commande getComById(Integer id);
+    public  void saveCom(Commande com);
 
 
 

@@ -22,21 +22,16 @@ public class Commande {
     @Id
     @GeneratedValue
     private int commandeId;
-
-
     private Date commandeDate;
 
-
-
-
+    @ManyToOne
+    private Livreur livreur;
     @ManyToOne
     private User user;
 
     @OneToOne
     @JoinColumn(name = "facture_id", referencedColumnName = "factureId")
     private Facture facture;
-
-
 
     @OneToMany(mappedBy = "commande", cascade = CascadeType.ALL)
     private List<LigneCom> ligneComs = new ArrayList<>();
@@ -90,6 +85,7 @@ public class Commande {
         this.user = user;
     }
 
+
     public Facture getFacture() {
         return facture;
     }
@@ -115,5 +111,11 @@ public class Commande {
                 '}';
     }
 
+    public Livreur getLivreur() {
+        return livreur;
+    }
 
+    public void setLivreur(Livreur livreur) {
+        this.livreur = livreur;
+    }
 }
