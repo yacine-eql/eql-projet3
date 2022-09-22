@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+  <title>Pizza - update</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+</head>
+<body>
+<div layout:fragment="content">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+
+
+        <div class="col-md-12 appointment ftco-animate">
+          <h3 class="mb-3">Dispach commande</h3>
+          <form  method="post"
+                 role="form"
+                 th:action="@{/update/commande}"
+                 th:object="${livreur}"
+                 class="appointment-form">
+
+            <div class="d-md-flex">
+              <div class="form-group">
+                <input class="form-control"
+                       id="livreur"
+                       name="livreur"
+                       placeholder="livreur"
+                       th:field="*{prenom}"
+                       type="text">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary py-2 px-3">Validez</button>
+              <a  th:href="@{/adminCommandes}" class="btn btn-white btn-outline-white py-2 px-3 ">Annuler</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br /><br />
+</div>
+</body>
+</html>

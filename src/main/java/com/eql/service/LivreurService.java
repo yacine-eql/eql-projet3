@@ -21,6 +21,7 @@ public interface LivreurService {
     void deleteLivreur(Integer id);
 
     Livreur findLivreurByDI(int id);
+    Livreur findLivreurByPrenom(String prenom);
 
 
 

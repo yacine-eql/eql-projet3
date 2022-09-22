@@ -67,6 +67,9 @@
                         <a style="color: #fac564; text-decoration: none;" th:href="@{/adminCommandes}">Liste des commandes</a>
                     </div>
                     <div class="col-md-12 mb-3">
+                        <a style="color: #fac564; text-decoration: none;" th:href="@{/adminDayCom}">Commandes du jour</a>
+                    </div>
+                    <div class="col-md-12 mb-3">
                         <a style="color: #fac564; text-decoration: none;" th:href="@{/adminCom}">Commandes en cours</a>
                     </div>
                     <div class="col-md-12 mb-3">
@@ -85,11 +88,7 @@
                 <h2 style="color: white" class="h3">Liste des commandes</h2>
                 <input class="form-control"  type="text" id="myInput" onkeyup="myFunction()" placeholder="Rechecher.." >
 
-                <form  method="post"
-                       role="form"
-                       th:action="@{/dispatch/{id}(id=${commande.commandeId})}"
-                       th:object="${commande}"
-                       class="appointment-form">
+
                 <table style="color: #adb5bd" class="table">
                     <thead >
                     <tr  >
@@ -98,7 +97,6 @@
                         <th>Produits</th>
                         <th>Montant</th>
                         <th>Livreur</th>
-                        <th>Liste</th>
                         <th>Dispatch</th>
 
                     </tr>
@@ -110,27 +108,13 @@
                         <td th:text = "${commande.getLigneComs()}"></td>
                         <td th:text = "${commande.facture.montant+ '€'}"></td>
                         <td th:text= "${commande.getLivreur()?.prenom}"></td>
-
                         <td>
-                            <select  >
-                            <option value=" ">choisir</option>
-                            <option th:each="livreur : ${livreurs}" th:value="${commande.livreur}" th:text="${livreur.prenom}"></option>
-                            </select>
-                            <input class="form-control"
-                                   id="id"
-                                   name="id"
-                                   placeholder="id"
-                                   th:field="*{commandeId}"
-                                   type="hidden">
-
-                        </td>
-                        <td> <button onclick="" type="submit" class="btn btn-primary py-2 px-3">Dispatch</button> </td>
-
+                        <a th:href="@{/dispatch/{id}(id=${commande.commandeId})}"  class="btn btn-primary py-1 px-2">Dispatch</a> </td>
                         </td>
                     </tr>
                     </tbody>
                 </table>
-                </form>
+
             </div>
         </div>
     </div>

@@ -44,4 +44,9 @@ public class LivreurServiceImpl implements LivreurService {
     public Livreur findLivreurByDI(int id) {
         return livreurRepository.findById(id).get();
     }
+
+    @Override
+    public Livreur findLivreurByPrenom(String prenom) {
+        return livreurRepository.findByPrenom(prenom);
+    }
 }

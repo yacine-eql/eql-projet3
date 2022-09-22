@@ -30,8 +30,6 @@ public class CommandeServiceImpl implements CommandeService {
         Commande commande = new Commande();
         Facture facture = new Facture();
 
-
-
         facture.setMontant(total);
         facture.setDateFacturation(new Date());
         factureRepository.save(facture);
