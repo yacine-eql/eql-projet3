@@ -18,9 +18,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Iterator;
 import java.util.List;
 
@@ -48,6 +45,7 @@ public class comController {
             model.addAttribute("connectedUser", userDto);
 
         }
+        model.addAttribute("count",PanierController.count );
         return "space";
     }
 

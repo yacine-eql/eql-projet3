@@ -36,12 +36,15 @@ public class AuthController {
     CommandeService commandeService;
 
 
+
     @GetMapping("/index")
     public String home(Model model,@AuthenticationPrincipal UserDetails currentUser){
         if (currentUser != null){
             UserDto userDto = userService.mapToUserDto(userService.findUserByEmail(currentUser.getUsername()));
             model.addAttribute("connectedUser", userDto);
         }
+
+        model.addAttribute("count",PanierController.count );
         return "index";
     }
 
@@ -52,6 +55,7 @@ public class AuthController {
 
         UserDto user =new UserDto();
         model.addAttribute("user",user);
+        model.addAttribute("count",PanierController.count );
         return  "register";
     }
 
@@ -84,7 +88,8 @@ public class AuthController {
     }
 
     @GetMapping("/login")
-    public String login(){
+    public String login(Model model){
+        model.addAttribute("count",PanierController.count );
         return "login";
     }
 
@@ -97,6 +102,7 @@ public class AuthController {
         List<Commande> commandes = commandeService.getcommandeByUser(user);
         model.addAttribute("connectedUser", userDto);
         model.addAttribute("commandes",commandes);
+        model.addAttribute("count",PanierController.count );
         System.out.println(userDto.getFirstName() + userDto.getLastName());
         return "space";
     }
@@ -107,6 +113,7 @@ public class AuthController {
             UserDto userDto = userService.mapToUserDto(userService.findUserByEmail(currentUser.getUsername()));
             model.addAttribute("connectedUser", userDto);
         }
+        model.addAttribute("count",PanierController.count );
         return "menu";
     }
 
@@ -118,6 +125,7 @@ public class AuthController {
         }
         UserDto user =new UserDto();
         model.addAttribute("user",user);
+        model.addAttribute("count",PanierController.count );
         return "contact";
     }
 
@@ -127,6 +135,7 @@ public class AuthController {
             UserDto userDto = userService.mapToUserDto(userService.findUserByEmail(currentUser.getUsername()));
             model.addAttribute("connectedUser", userDto);
         }
+        model.addAttribute("count",PanierController.count );
         return "engagement";
     }
 

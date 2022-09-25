@@ -2160,4 +2160,34 @@ textarea.form-control {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px;
   }
+
+}
+
+.badge {
+	display: inline-block;
+	padding: 0.25em 0.4em;
+	font-size: 95%;
+	font-weight: 700;
+	line-height: 0.5;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: baseline;
+	border-radius: 0.25rem;
+}
+
+.label-warning[href],
+.badge-warning {
+	color: #ffc107!important;
+}
+#lblCartCount {
+	font-size: 12px;
+	background: #ff0000;
+	color: #fff;
+	padding: 0 5px;
+	vertical-align: top;
+	margin-left: -10px;
+	position: absolute;
+	left: 0;
+	right: 3rem;
+	bottom: 0;
 }

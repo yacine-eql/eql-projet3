@@ -24,6 +24,7 @@ public class prodController {
     @GetMapping("/carte")
     public String products(Model model,@AuthenticationPrincipal UserDetails currentUser){
 
+        model.addAttribute("count",PanierController.count );
         List<Produit> carte = produitService.getAllProduct();
         model.addAttribute("carte",carte);
         if (currentUser != null){

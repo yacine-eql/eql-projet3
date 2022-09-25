@@ -3908,8 +3908,8 @@ input[type="button"].btn-block {
 
 .badge {
   display: inline-block;
-  padding: 0.25em 0.4em;
-  font-size: 75%;
+
+  font-size: 95%;
   font-weight: 700;
   line-height: 1;
   text-align: center;
@@ -3961,8 +3961,8 @@ input[type="button"].btn-block {
     background-color: #117a8b; }
 
 .badge-warning {
-  color: #212529;
-  background-color: #ffc107; }
+  color: #d39e00;
+   }
   .badge-warning[href]:hover, .badge-warning[href]:focus {
     color: #212529;
     text-decoration: none;
@@ -7461,7 +7461,8 @@ h1, h2, h3, h4, h5,
 
 .navbar-brand {
   font-size: 24px;
-  line-height: 1; }
+  line-height: 1;
+  margin-left: -7rem;}
   .navbar-brand span {
     font-size: 24px;
     color: #fac564; }

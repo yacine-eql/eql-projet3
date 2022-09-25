@@ -30,22 +30,28 @@ public class PanierController {
     @Autowired
     private CommandeService commandeService;
 
+      static Integer count = 0  ;
+
+
     @GetMapping("/addToCart/{id}")
     public  String addToCart(@PathVariable(value = "id") int id, HttpServletRequest request){
        HttpSession session = request.getSession();
 
         Map<Produit,Integer> panier = (Map<Produit, Integer>) session.getAttribute("panier");
         Double total = (Double) session.getAttribute("total");
+         count = (Integer) session.getAttribute("count");
 
         if (panier == null){
-
+            count = 0;
             total=0.0;
             panier = new HashMap<Produit, Integer>();
             Produit produit = produitService.getProduitById(id);
             panier.put(produit, 1);
             session.setAttribute("panier",panier);
             total = produit.getPrix();
+            count = 1;
             session.setAttribute("total",total);
+            session.setAttribute("count",count);
 
         } else {
             Produit produit = produitService.getProduitById(id);
@@ -54,7 +60,9 @@ public class PanierController {
                 panier.put(produit, panier.get(produit) + 1);
                 session.setAttribute("panier",panier);
                 total += produit.getPrix();
+                count += 1;
                 session.setAttribute("total",total);
+                session.setAttribute("count",count);
 
                 for (Produit key: panier.keySet()) {
                     System.out.println(key + "=" + panier.get(key));
@@ -64,7 +72,9 @@ public class PanierController {
                 panier.put(produit,1);
                 session.setAttribute("panier",panier);
                 total += produit.getPrix();
+                count += 1;
                 session.setAttribute("total",total);
+                session.setAttribute("count",count);
 
                 for (Produit key: panier.keySet()) {
                     System.out.println(key + "=" + panier.get(key));
@@ -72,6 +82,7 @@ public class PanierController {
             }
 
         }
+        System.out.println("heeeeeeeeeeeeeeeeeellllllllllllllllllllloooooooooooooooooo"+count);
         return "redirect:/carte";
     }
 
@@ -93,6 +104,7 @@ public class PanierController {
         System.out.println("voir : "+panier);
         model.addAttribute("produits",panier);
         model.addAttribute("total",total);
+        model.addAttribute("count",count);
 
         return "panier";
     }
@@ -110,7 +122,11 @@ public class PanierController {
         model.addAttribute("produits",panier);
         model.addAttribute("total",total);
         commandeService.ajoueCommande(user,total,panier);
-
+        panier.clear();
+        count = 0;
+        total=0.0;
+        session.setAttribute("total",total);
+        session.setAttribute("count",count);
         return "redirect:/space?success";
     }
 
@@ -131,7 +147,9 @@ public class PanierController {
         panier.put(produit, panier.get(produit) + 1);
         session.setAttribute("panier",panier);
         total += produit.getPrix();
+        count+=1;
         session.setAttribute("total",total);
+        session.setAttribute("count",count);
 
 
         return "redirect:/voirPanier";
@@ -156,13 +174,17 @@ public class PanierController {
             panier.put(produit, panier.get(produit) - 1);
             session.setAttribute("panier",panier);
             total -= produit.getPrix();
+            count -= 1;
             session.setAttribute("total",total);
+            session.setAttribute("count",count);
 
         }else {
             panier.remove(produit);
             session.setAttribute("panier",panier);
             total -= produit.getPrix();
+            count -= 1;
             session.setAttribute("total",total);
+            session.setAttribute("count",count);
 
         }
         return "redirect:/voirPanier";

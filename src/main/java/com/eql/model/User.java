@@ -38,8 +38,11 @@ public class User {
     @Column(nullable = false)
     private String tel ;
 
+    private Boolean isActive = true;
+
     @JsonIgnore
     private String password;
+
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "users_role",

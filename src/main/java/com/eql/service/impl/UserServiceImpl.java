@@ -85,8 +85,9 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(Long id) {
         User user = userRepository.findById(id).get();
 
-        user.getRoles().remove(0);
-        userRepository.deleteById(id);
+        user.setIsActive(false);
+        user.setPassword(passwordEncoder.encode("delete"));
+        userRepository.save(user);
     }
 
     private Role checkRoleExist() {
@@ -110,6 +111,14 @@ public class UserServiceImpl implements UserService {
         List<User> users = userRepository.findAll();
 
         users.remove(userRepository.findByEmail("admin@gmail.com"));
+        for (Iterator<User> it = users.iterator(); it.hasNext();) {
+            User s = it.next();
+
+            if (!s.getIsActive()){
+                it.remove();
+            }
+        }
+
         return users.stream()
                 .map( user -> mapToUserDto(user))
                 .collect(Collectors.toList());
@@ -122,7 +131,7 @@ public class UserServiceImpl implements UserService {
         for (Iterator<User> it = users.iterator(); it.hasNext();) {
             User s = it.next();
 
-            if (!s.getCommandes().isEmpty()){
+            if (!s.getCommandes().isEmpty()||!s.getIsActive()){
                 it.remove();
             }
         }
@@ -139,7 +148,7 @@ public class UserServiceImpl implements UserService {
         for (Iterator<User> it = users.iterator(); it.hasNext();) {
             User s = it.next();
 
-            if (s.getCommandes().size() < 5){
+            if ((s.getCommandes().size() < 5) || !s.getIsActive()){
                 it.remove();
             }
         }
