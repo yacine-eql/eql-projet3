@@ -13,11 +13,10 @@
 <body>
 <div layout:fragment="content">
 
-
 <section style="margin-top: -3rem;" class="ftco-section">
 
     <div class="container">
-        <div class="row justify-content-center mb-5 pb-3">
+        <div class="row justify-content-center mb-5 pb-3" >
             <div class="col-md-7 heading-section ftco-animate text-center">
                 <h2 class="mb-4">Les Basiques</h2>
                 <p class="flip"><span class="deg1"></span><span class="deg2"></span><span class="deg3"></span></p>
@@ -27,64 +26,23 @@
 
     <div class="container-wrap"  >
         <div class="row no-gutters d-flex"  >
-            <div style="margin-bottom: 2rem;" class="col-lg-4 d-flex ftco-animate" >
+            <div style="margin-bottom: 2rem;" class="col-lg-4 d-flex ftco-animate" th:each="produit : ${basiques}" >
                 <div  class="services-wrap d-flex"  >
-                    <a href="#" class="img " style="background-image: url(images/pizza-1.jpg);"></a>
+                    <a href="#" class="img " th:style="'background-image:url('+ ${produit.image} +');'"></a>
                     <div class="text p-4">
-                        <h3 th:text = "${carte.get(0).label}"></h3>
-                        <p style="color: #7c9192" th:text = "${carte.get(0).description}"> </p>
-                        <p class="price" > <span >€ <span th:text = "${carte.get(0).prix}"></span> </span>
-
-                            <a th:href="@{/addToCart/{id}(id=${carte.get(0).getProduitId()})}" class="ml-2 btn btn-white btn-outline-white">Ajouter</a> </p>
-                    </div>
-                </div>
-            </div>
-            <div style="margin-bottom: 2rem;" class="col-lg-4 d-flex ftco-animate" >
-                <div  class="services-wrap d-flex"  >
-                    <a href="#" class="img " style="background-image: url(images/pizza-2.jpg);"></a>
-                    <div class="text p-4">
-                        <h3 th:text = "${carte.get(1).label}"></h3>
-                        <p style="color: #7c9192" th:text = "${carte.get(1).description}"> </p>
-                        <p class="price"><span >€ <span th:text = "${carte.get(1).prix}"></span> </span>
-                            <a th:href="@{/addToCart/{id}(id=${carte.get(1).getProduitId()})}" class="ml-2 btn btn-white btn-outline-white">Ajouter</a></p>
-                    </div>
-                </div>
-            </div>
-            <div style="margin-bottom: 2rem;" class="col-lg-4 d-flex ftco-animate" >
-                <div  class="services-wrap d-flex"  >
-                    <a href="#" class="img " style="background-image: url(images/pizza-3.jpg);"></a>
-                    <div class="text p-4">
-                        <h3 th:text = "${carte.get(2).label}"></h3>
-                        <p style="color: #7c9192" th:text = "${carte.get(2).description}"> </p>
-                        <p class="price"><span >€ <span th:text = "${carte.get(2).prix}"></span> </span>
-                            <a th:href="@{/addToCart/{id}(id=${carte.get(2).getProduitId()})}" class="ml-2 btn btn-white btn-outline-white">Ajouter</a></p>
-                    </div>
-                </div>
-            </div>
-            <div  class="col-lg-4 d-flex ftco-animate" >
-                <div  class="services-wrap d-flex"  >
-                    <a href="#" class="img order-lg-last" style="background-image: url(images/pizza-4.jpg);"></a>
-                    <div class="text p-4">
-                        <h3 th:text = "${carte.get(3).label}"></h3>
-                        <p style="color: #7c9192" th:text = "${carte.get(3).description}"> </p>
-                        <p class="price"><span >€ <span th:text = "${carte.get(3).prix}"></span> </span>
-                            <a th:href="@{/addToCart/{id}(id=${carte.get(3).getProduitId()})}" class="ml-2 btn btn-white btn-outline-white">Ajouter</a></p>
-                    </div>
-                </div>
-            </div>
-            <div  class="col-lg-4 d-flex ftco-animate" >
-                <div  class="services-wrap d-flex"  >
-                    <a href="#" class="img order-lg-last" style="background-image: url(images/pizza-5.jpg);"></a>
-                    <div class="text p-4">
-                        <h3 th:text = "${carte.get(4).label}"></h3>
-                        <p style="color: #7c9192" th:text = "${carte.get(4).description}"> </p>
-                        <p class="price"><span >€ <span th:text = "${carte.get(4).prix}"></span> </span>
-                            <a th:href="@{/addToCart/{id}(id=${carte.get(4).getProduitId()})}" class="ml-2 btn btn-white btn-outline-white">Ajouter</a></p>
+                        <h3 th:text = "${produit.label}"></h3>
+                        <p style="color: #7c9192" th:text = "${produit.description}"> </p>
+                        <p class="price" > <span >€ <span th:text = "${produit.prix}"></span> </span>
+                            <a th:href="@{/addToCart/{id}(id=${produit.getProduitId()})}" class="ml-2 btn btn-white btn-outline-white">Ajouter</a>
+                            <a th:href="@{/evaluatePage/{id}(id=${produit.getProduitId()})}" class="ml-2 btn btn-white btn-outline-white">Avis</a></p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+
 
     <div class="container">
         <div class="row justify-content-center mb-5 pb-3 mt-5 pt-5">
@@ -95,52 +53,21 @@
                 </div>
             </div>
 
+    <div class="container-wrap"  >
         <div class="row no-gutters d-flex"  >
-            <div style="margin-bottom: 2rem;" class="col-lg-4 d-flex ftco-animate" >
+            <div style="margin-bottom: 2rem;" class="col-lg-4 d-flex ftco-animate" th:each="produit : ${incontournables}" >
                 <div  class="services-wrap d-flex"  >
-                    <a href="#" class="img " style="background-image: url(images/pizza-6.jpg);"></a>
+                    <a href="#" class="img " th:style="'background-image:url('+ ${produit.image} +');'"></a>
                     <div class="text p-4">
-                        <h3 th:text = "${carte.get(5).label}"></h3>
-                        <p style="color: #7c9192" th:text = "${carte.get(5).description}"> </p>
-                        <p class="price"><span >€ <span th:text = "${carte.get(5).prix}"></span> </span>
-                            <a th:href="@{/addToCart/{id}(id=${carte.get(5).getProduitId()})}" class="ml-2 btn btn-white btn-outline-white">Ajouter</a></p>
-                    </div>
-                </div>
-            </div>
-            <div style="margin-bottom: 2rem;" class="col-lg-4 d-flex ftco-animate" >
-                <div  class="services-wrap d-flex"  >
-                    <a href="#" class="img " style="background-image: url(images/pizza-7.jpg);"></a>
-                    <div class="text p-4">
-                        <h3 th:text = "${carte.get(6).label}"></h3>
-                        <p style="color: #7c9192" th:text = "${carte.get(6).description}"> </p>
-                        <p class="price"><span >€ <span th:text = "${carte.get(6).prix}"></span> </span>
-                            <a th:href="@{/addToCart/{id}(id=${carte.get(6).getProduitId()})}" class="ml-2 btn btn-white btn-outline-white">Ajouter</a></p>
-                    </div>
-                </div>
-            </div>
-            <div style="margin-bottom: 2rem;" class="col-lg-4 d-flex ftco-animate" >
-                <div  class="services-wrap d-flex"  >
-                    <a href="#" class="img " style="background-image: url(images/pizza-8.jpg);"></a>
-                    <div class="text p-4">
-                        <h3 th:text = "${carte.get(7).label}"></h3>
-                        <p style="color: #7c9192" th:text = "${carte.get(7).description}"> </p>
-                        <p class="price"><span >€ <span th:text = "${carte.get(7).prix}"></span> </span>
-                            <a th:href="@{/addToCart/{id}(id=${carte.get(7).getProduitId()})}" class="ml-2 btn btn-white btn-outline-white">Ajouter</a></p>
-                    </div>
-                </div>
-            </div>
-            <div  class="col-lg-4 d-flex ftco-animate" >
-                <div  class="services-wrap d-flex"  >
-                    <a href="#" class="img order-lg-last" style="background-image: url(images/pizza-9.jpg);"></a>
-                    <div class="text p-4">
-                        <h3 th:text = "${carte.get(8).label}"></h3>
-                        <p style="color: #7c9192" th:text = "${carte.get(8).description}"> </p>
-                        <p class="price"><span >€ <span th:text = "${carte.get(8).prix}"></span> </span>
-                            <a th:href="@{/addToCart/{id}(id=${carte.get(8).getProduitId()})}" class="ml-2 btn btn-white btn-outline-white">Ajouter</a></p>
+                        <h3 th:text = "${produit.label}"></h3>
+                        <p style="color: #7c9192" th:text = "${produit.description}"> </p>
+                        <p class="price" > <span >€ <span th:text = "${produit.prix}"></span> </span>
+                            <a th:href="@{/addToCart/{id}(id=${produit.getProduitId()})}" class="ml-2 btn btn-white btn-outline-white">Ajouter</a> </p>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
 
     <div class="container">
@@ -152,43 +79,22 @@
                 </div>
             </div>
 
+    <div class="container-wrap"  >
         <div class="row no-gutters d-flex"  >
-            <div  class="col-lg-4 d-flex ftco-animate" >
+            <div style="margin-bottom: 2rem;" class="col-lg-4 d-flex ftco-animate" th:each="produit : ${supremes}" >
                 <div  class="services-wrap d-flex"  >
-                    <a href="#" class="img " style="background-image: url(images/pizza-10.jpg);"></a>
+                    <a href="#" class="img " th:style="'background-image:url('+ ${produit.image} +');'"></a>
                     <div class="text p-4">
-                        <h3 th:text = "${carte.get(9).label}"></h3>
-                        <p style="color: #7c9192" th:text = "${carte.get(9).description}"> </p>
-                        <p class="price"><span >€ <span th:text = "${carte.get(9).prix}"></span> </span>
-                            <a th:href="@{/addToCart/{id}(id=${carte.get(9).getProduitId()})}" class="ml-2 btn btn-white btn-outline-white">Ajouter</a></p>
-                    </div>
-                </div>
-            </div>
-
-
-            <div  class="col-lg-4 d-flex ftco-animate" >
-                <div  class="services-wrap d-flex"  >
-                    <a href="#" class="img " style="background-image: url(images/pizza-11.jpg);"></a>
-                    <div class="text p-4">
-                        <h3 th:text = "${carte.get(10).label}"></h3>
-                        <p style="color: #7c9192" th:text = "${carte.get(10).description}"> </p>
-                        <p class="price"><span >€ <span th:text = "${carte.get(10).prix}"></span> </span>
-                            <a th:href="@{/addToCart/{id}(id=${carte.get(10).getProduitId()})}" class="ml-2 btn btn-white btn-outline-white">Ajouter</a></p>
-                    </div>
-                </div>
-            </div>
-            <div  class="col-lg-4 d-flex ftco-animate" >
-                <div  class="services-wrap d-flex"  >
-                    <a href="#" class="img " style="background-image: url(images/pizza-12.jpg);"></a>
-                    <div class="text p-4">
-                        <h3 th:text = "${carte.get(11).label}"></h3>
-                        <p style="color: #7c9192" th:text = "${carte.get(11).description}"> </p>
-                        <p class="price"><span >€ <span th:text = "${carte.get(11).prix}"></span> </span>
-                            <a th:href="@{/addToCart/{id}(id=${carte.get(11).getProduitId()})}" class="ml-2 btn btn-white btn-outline-white">Ajouter</a></p>
+                        <h3 th:text = "${produit.label}"></h3>
+                        <p style="color: #7c9192" th:text = "${produit.description}"> </p>
+                        <p class="price" > <span >€ <span th:text = "${produit.prix}"></span> </span>
+                            <a th:href="@{/addToCart/{id}(id=${produit.getProduitId()})}" class="ml-2 btn btn-white btn-outline-white">Ajouter</a> </p>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+
 
 
 </section>

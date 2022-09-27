@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Pizza - carte</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+
+
+</head>
+<body>
+<div layout:fragment="content">
+
+
+    <section class="ftco-section contact-section">
+
+        <div class="container mt-1">
+            <div class="row block-9">
+                <div class="col-md-4 contact-info ftco-animate">
+                    <div class="row">
+                        <div class="col-md-12 mb-4">
+
+                            <h2 class="h4">Nos informations</h2>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <p style="color: #adb5bd "><span>Adresse :</span> 210 Rue La Fayette, Paris  75010</p>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <p><span>Phone :</span> <a style="color: #fac564; text-decoration: none;" href="tel://1234567920">0140343592</a></p>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <p><span>Email :</span> <a style="color: #fac564; text-decoration: none;" href="mailto:info@yoursite.com">yacine.saib@gmail.com</a></p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-6 ftco-animate">
+
+
+                    <div th:if="${param.success}">
+                        <div class="alert alert-danger">
+                            Votre avis a bien été enregistré !
+                        </div>
+                    </div>
+
+
+                    <h2 class="h4">Donnez votre avis !</h2>
+                    <form  method="post"
+                           role="form"
+                           th:action="@{/eval}"
+                           th:object="${user}" class="contact-form">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" required="required" placeholder="Date de commande" th:field="*{email}">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" required="required" placeholder="Produit" th:field="*{firstName}">
+                        </div>
+                        <div class="form-group">
+            <textarea name="" id="" cols="30" rows="7" class="form-control" required="required" placeholder="Votre avis" th:field="*{address}">
+            </textarea >
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Validez" class="btn btn-primary py-2 px-4">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+</body>
+</html>

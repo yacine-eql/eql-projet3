@@ -23,6 +23,11 @@
                         Votre compte a bien été modifié !
                     </div>
                 </div>
+                <div th:if="${param.evaluate}">
+                    <div class="alert alert-danger">
+                        Votre avis a été enregistré !
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-md-12 mb-4">
                         <h2 style="color: white" class="h4">Mes informations</h2>
@@ -64,13 +69,14 @@
                 </div>
                 <h2 style="color: white" class="h4">Mes Commandes</h2>
 
-                <table style="color: #adb5bd" class="table">
+                <table style="color: #adb5bd" class="table table-responsive table-sm">
                     <thead >
-                    <tr  >
-                        <th>Numéro de commande</th>
-                        <th>Date de commande</th>
-                        <th>Produits</th>
-                        <th>Montant</th>
+                    <tr style="color: #fac564;" class="header" >
+                        <th>Numéro </th>
+                        <th>Date </th>
+                        <th>Produits </th>
+                        <th>Montant </th>
+                        <th>Evaluer </th>
                     </tr>
                     </thead>
                     <tbody>
@@ -79,8 +85,8 @@
                         <td th:text = "${#dates.format(commande.commandeDate, 'dd-MMM-yyyy')}">
                         <td th:text = "${commande.getLigneComs()}"></td>
                         <td th:text = "${commande.facture.montant+ '€'}"></td>
+                        <td> <a th:href="@{/evaluateCommande/{id}(id=${commande.commandeId})}"  class="btn btn-primary py-1 px-2">Evaluer</a> </td>
 
-                        </td>
                     </tr>
                     </tbody>
                 </table>

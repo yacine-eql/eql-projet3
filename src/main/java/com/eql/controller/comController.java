@@ -2,12 +2,8 @@ package com.eql.controller;
 
 
 import com.eql.dto.UserDto;
-import com.eql.model.Commande;
-import com.eql.model.Livreur;
-import com.eql.model.User;
-import com.eql.service.CommandeService;
-import com.eql.service.LivreurService;
-import com.eql.service.UserService;
+import com.eql.model.*;
+import com.eql.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,6 +14,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -29,6 +29,11 @@ public class comController {
     @Autowired
     LivreurService livreurService;
 
+    @Autowired
+    ProduitService produitService;
+
+    @Autowired
+    CommentaireService commentaireService;
     Commande com;
 
 
@@ -138,4 +143,63 @@ public class comController {
     }
 
 
+    @GetMapping("/evaluateCommande/{id}")
+    public String evaluateCommande(@PathVariable(value = "id") Integer id,Model model,@AuthenticationPrincipal UserDetails currentUser) {
+        if (currentUser != null) {
+            UserDto userDto = userService.mapToUserDto(userService.findUserByEmail(currentUser.getUsername()));
+            model.addAttribute("connectedUser", userDto);
+
+        }
+        List<LigneCom> ligneComs = commandeService.getComById(id).getLigneComs();
+        List<Produit> produits = new ArrayList<>();
+        for (LigneCom ligneCom : ligneComs) {
+            produits.add(ligneCom.getProduit());
+        }
+
+        com = commandeService.getComById(id);
+        model.addAttribute("produits", produits);
+
+
+        return "evaluateCommande";
+    }
+
+    @GetMapping("/evaluateProduit/{id}")
+    public String evaluateProduit(@PathVariable(value = "id") Integer id,Model model,
+                                  @AuthenticationPrincipal UserDetails currentUser) {
+        if (currentUser != null) {
+            UserDto userDto = userService.mapToUserDto(userService.findUserByEmail(currentUser.getUsername()));
+            model.addAttribute("connectedUser", userDto);
+
+        }
+
+        Format formatter = new SimpleDateFormat("dd-MMM-yyyy");
+        String s = formatter.format(com.getCommandeDate());
+        UserDto user =new UserDto();
+        user.setEmail(s);
+
+        user.setFirstName(produitService.getProduitById(id).getLabel());
+        model.addAttribute("user",user);
+
+        return "evaluateProduit";
+    }
+    @PostMapping("/eval")
+    public String evaluate(Model model,UserDto userDto1, @AuthenticationPrincipal UserDetails currentUser){
+
+
+        model.addAttribute("user", userDto1);
+
+        if (currentUser != null){
+            UserDto userDto = userService.mapToUserDto(userService.findUserByEmail(currentUser.getUsername()));
+            model.addAttribute("connectedUser", userDto);
+
+        }
+        Commentaire commentaire = new Commentaire();
+        commentaire.setDateEval(new Date());
+        commentaire.setDateCom(com.getCommandeDate());
+        commentaire.setProduit(produitService.getProduitByLabel(userDto1.getFirstName()));
+        commentaire.setEvaluation(userDto1.getAddress());
+        commentaireService.addCommentaire(commentaire);
+
+        return "redirect:/space?evaluate";
+    }
 }

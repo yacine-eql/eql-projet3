@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}"
+>
+<head>
+    <title>Compte - modification</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+</head>
+<body>
+<div layout:fragment="content">
+
+    <div class="container mt-5">
+        <div class="row block-9">
+            <div class="col-md-3 contact-info ftco-animate">
+                <div class="row">
+                    <div class="col-md-12 mb-4">
+
+                        <div>
+
+                            <div class="text p-4">
+                                <h3 th:text = "${commentaires.get(0).produit.label}"></h3>
+                                <p style="color: #7c9192" th:text = "${commentaires.get(0).produit.description}"> </p>
+                                <p class="price" > <span >€ <span th:text = "${commentaires.get(0).produit.prix}"></span> </span>
+                                    <a th:href="@{/addToCart/{id}(id=${commentaires.get(0).produit.getProduitId()})}" class="ml-2 btn btn-white btn-outline-white">Ajouter</a>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="col-md-1"></div>
+
+            <div class="col-md-7 ftco-animate">
+                <h2 style="color: white" class="h4">Les commentaires des clients</h2>
+
+
+                <table id="myTable" style="color: #adb5bd" class="table table-responsive table-sm">
+                    <thead >
+                    <tr style="color: #fac564;" class="header">
+
+                        <th>Date avis</th>
+                        <th>Date commanande</th>
+                        <th>Evaluation</th>
+
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each = "commentaire : ${commentaires}">
+                        <td th:text = "${#dates.format(commentaire.dateEval, 'dd-MMM-yyyy')}"></td>
+                        <td th:text = "${#dates.format(commentaire.dateCom, 'dd-MMM-yyyy')}"></td>
+                        <td th:text = "${commentaire.evaluation}"></td>
+
+
+                    </tr>
+
+
+                    </tbody>
+                </table>
+                <a th:href="@{/carte}"  class="btn btn-white btn-outline-white py-2 px-3">Retour</a>
+
+
+            </div>
+
+        </div>
+    </div>
+    <br /><br />
+</div>
+</body>
+</html></title>
+</head>
+<body>
+
+</body>
+</html>

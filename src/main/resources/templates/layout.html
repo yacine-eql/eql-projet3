@@ -47,7 +47,7 @@
                 <li sec:authorize="hasRole('ADMIN')" class="nav-item"><a th:href="@{/adminSpace}" class="nav-link"><span class=" icon fa fa-cloud"> </span> <span class="text"> ESPACE ADMIN </span>  </a></li>
                 <li sec:authorize="!hasRole('USER')&&!hasRole('ADMIN')" class="nav-item"><a th:href="@{/register}" class="nav-link"><span class=" icon fa fa-user"> </span> <span class="text"> CREER UN COMPTE </span> </a></li>
                 <li sec:authorize="hasRole('USER')||hasRole('ADMIN')" class="nav-item"><a th:href="@{/logout}" class="nav-link "><span class=" icon fa fa-sign-out"> </span> <span class="text"> SE DECONNECTER </span> </a></li>
-                <li sec:authorize="hasRole('USER')||hasRole('ADMIN')" class=" nav-item"><a href="#"class="nav-link"><span class=" icon icon-user"></span> <span class="text" th:text="${connectedUser.firstName}"> </span></a></li>
+                <li sec:authorize="hasRole('USER')||hasRole('ADMIN')" th:if="${connectedUser!=null}" class=" nav-item"><a href="#"class="nav-link"><span class=" icon icon-user"></span> <span class="text" th:text="${connectedUser.firstName}"> </span></a></li>
                 <li sec:authorize="!hasRole('ADMIN')" class=" nav-item"><a style="margin-left: 94%; " th:href="@{/voirPanier}" >
                     <span id="boot-icon" class="bi bi-cart" style="font-size: 40px; color: rgb(243, 156, 18);"></span> </a></li>
                 <span sec:authorize="!hasRole('ADMIN')"th:if="${count!=0}" class="text badge badge-warning" id='lblCartCount' th:text="${count}"> </span>

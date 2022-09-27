@@ -37,6 +37,7 @@ public class SpringSecurity {
                .antMatchers("/adminClients").hasRole("ADMIN")
                .antMatchers("/adminLivreurs").hasRole("ADMIN")
                .antMatchers("/space").hasRole("USER")
+               .antMatchers("/evaluateCommande").hasRole("USER")
                .antMatchers("/voirPanier").hasAnyRole("USER","ADMIN")
                .antMatchers("/add/{id}").hasRole("USER")
                .antMatchers("/updateAccount").hasAnyRole("USER","ADMIN")

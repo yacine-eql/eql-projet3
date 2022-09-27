@@ -7462,7 +7462,7 @@ h1, h2, h3, h4, h5,
 .navbar-brand {
   font-size: 24px;
   line-height: 1;
-  margin-left: -7rem;}
+  }
   .navbar-brand span {
     font-size: 24px;
     color: #fac564; }
@@ -7966,6 +7966,8 @@ h1, h2, h3, h4, h5,
   font-weight: 400; }
   .menu-wrap .text .price span {
     color: #fac564; }
+
+
 
 .ftco-appointment {
   width: 100%;

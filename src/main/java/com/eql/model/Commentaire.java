@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import java.util.Date;
 
 @Entity
 public class Commentaire {
@@ -12,6 +13,8 @@ public class Commentaire {
     @GeneratedValue
     private int idCommentaire ;
     private String evaluation;
+    private Date dateEval;
+    private Date dateCom;
 
     @ManyToOne
     private Produit produit;
@@ -45,5 +48,21 @@ public class Commentaire {
 
     public void setProduit(Produit produit) {
         this.produit = produit;
+    }
+
+    public Date getDateEval() {
+        return dateEval;
+    }
+
+    public void setDateEval(Date dateEval) {
+        this.dateEval = dateEval;
+    }
+
+    public Date getDateCom() {
+        return dateCom;
+    }
+
+    public void setDateCom(Date dateCom) {
+        this.dateCom = dateCom;
     }
 }
