@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -100,6 +101,7 @@ public class AuthController {
         UserDto userDto = userService.mapToUserDto(userService.findUserByEmail(currentUser.getUsername()));
         User user = userService.findUserByEmail(currentUser.getUsername());
         List<Commande> commandes = commandeService.getcommandeByUser(user);
+        
         model.addAttribute("connectedUser", userDto);
         model.addAttribute("commandes",commandes);
         model.addAttribute("count",PanierController.count );

@@ -24,16 +24,11 @@ public class MailController {
 
         @PostMapping("/mail")
         public String mail(Model model,UserDto userDto1, @AuthenticationPrincipal UserDetails currentUser){
-
-
             model.addAttribute("user", userDto1);
-
             if (currentUser != null){
                 UserDto userDto = userService.mapToUserDto(userService.findUserByEmail(currentUser.getUsername()));
                 model.addAttribute("connectedUser", userDto);
-
             }
-
             emailSenderService.sendSimpleEmail(userDto1.getEmail() + " Sujet : " + userDto1.getLastName(),userDto1.getAddress());
             return "redirect:/contact?success";
         }

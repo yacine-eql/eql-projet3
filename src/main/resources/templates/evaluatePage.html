@@ -23,10 +23,10 @@
                         <div>
 
                             <div class="text p-4">
-                                <h3 th:text = "${commentaires.get(0).produit.label}"></h3>
-                                <p style="color: #7c9192" th:text = "${commentaires.get(0).produit.description}"> </p>
-                                <p class="price" > <span >€ <span th:text = "${commentaires.get(0).produit.prix}"></span> </span>
-                                    <a th:href="@{/addToCart/{id}(id=${commentaires.get(0).produit.getProduitId()})}" class="ml-2 btn btn-white btn-outline-white">Ajouter</a>
+                                <h3 th:text = "${produit.label}"></h3>
+                                <p style="color: #7c9192" th:text = "${produit.description}"> </p>
+                                <p class="price" > <span >€ <span th:text = "${produit.prix}"></span> </span>
+                                    <a th:href="@{/addToCart/{id}(id=${produit.getProduitId()})}" class="ml-2 btn btn-white btn-outline-white">Ajouter</a>
 
                             </div>
                         </div>

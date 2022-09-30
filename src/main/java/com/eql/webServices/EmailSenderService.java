@@ -25,4 +25,18 @@ public class EmailSenderService {
 
     }
 
+
+    public void sendSimpleEmailByCom(String email,
+            String subject,
+            String body
+    ) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("yacine.saib@gmail.com");
+        message.setTo(email);
+        message.setText(body);
+        message.setSubject(subject);
+        mailSender.send(message);
+
+    }
+
 }

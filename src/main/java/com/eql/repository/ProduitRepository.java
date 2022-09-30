@@ -21,5 +21,10 @@ Produit getProduitByLabel(String label);
     @Query(value = "SELECT * FROM `produit` WHERE `categorie_id`=3", nativeQuery = true)
     List<Produit> getSupremes();
 
+    @Query(value = "SELECT * FROM `produit` WHERE `categorie_id`=5", nativeQuery = true)
+    List<Produit> getDesserts();
+
+    @Query(value = "SELECT * FROM `produit` WHERE `categorie_id`=4", nativeQuery = true)
+    List<Produit> getBoissons();
 
 }

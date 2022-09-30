@@ -46,12 +46,12 @@ public class ProduitServiceImpl implements ProduitService {
 
     @Override
     public List<Produit> getBoissons() {
-        return null;
+        return produitRepository.getBoissons();
     }
 
     @Override
     public List<Produit> getDesserts() {
-        return null;
+        return produitRepository.getDesserts();
     }
 
     @Override

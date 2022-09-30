@@ -105,7 +105,7 @@
                         <td th:text = "${user.tel}"></td>
                         <td th:text = "${user.address}"></td>
                        <td> <a th:href="@{/updateAccounts/{id}(id=${user.id})}"  class="btn btn-primary py-1 px-2">Modifier</a> </td>
-                        <td> <a th:href="@{/delete/{id}(id=${user.id})}"  class="btn btn-primary py-1 px-2">Supprimer</a> </td>
+                        <td> <a th:href="@{/deletePageAdmin/{id}(id=${user.id})}"  class="btn btn-primary py-1 px-2">Supprimer</a> </td>
 
                     </tr>
                     </tbody>

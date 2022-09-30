@@ -7,6 +7,7 @@ import com.eql.model.User;
 import com.eql.service.CommandeService;
 import com.eql.service.ProduitService;
 import com.eql.service.UserService;
+import com.eql.webServices.EmailSenderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,6 +30,8 @@ public class PanierController {
     private UserService userService;
     @Autowired
     private CommandeService commandeService;
+    @Autowired
+    EmailSenderService emailSenderService;
 
       static Integer count = 0  ;
 
@@ -99,9 +102,6 @@ public class PanierController {
         if (panier == null) {
             total = 0.0;
         }
-
-
-        System.out.println("voir : "+panier);
         model.addAttribute("produits",panier);
         model.addAttribute("total",total);
         model.addAttribute("count",count);
@@ -109,11 +109,27 @@ public class PanierController {
         return "panier";
     }
 
-    @PostMapping("/validePanier")
+    @GetMapping("/payment")
     public String validePanier(HttpServletRequest request, Model model,@AuthenticationPrincipal UserDetails currentUser){
         HttpSession session = request.getSession();
         if (currentUser != null) {
             UserDto userDto = userService.mapToUserDto(userService.findUserByEmail(currentUser.getUsername()));
+            model.addAttribute("connectedUser", userDto);
+        }
+        Map<Produit,Integer> panier = (Map<Produit, Integer>) session.getAttribute("panier");
+        Double total = (Double) session.getAttribute("total");
+        model.addAttribute("produits",panier);
+        model.addAttribute("total",total);
+        model.addAttribute("count",count);
+        return "payment";
+    }
+
+    @PostMapping("/validePanier")
+    public String validePayment(HttpServletRequest request, Model model,@AuthenticationPrincipal UserDetails currentUser){
+        HttpSession session = request.getSession();
+        UserDto userDto = null;
+        if (currentUser != null) {
+            userDto = userService.mapToUserDto(userService.findUserByEmail(currentUser.getUsername()));
             model.addAttribute("connectedUser", userDto);
         }
         User user = userService.findUserByEmail(currentUser.getUsername());
@@ -121,7 +137,12 @@ public class PanierController {
         Double total = (Double) session.getAttribute("total");
         model.addAttribute("produits",panier);
         model.addAttribute("total",total);
-        commandeService.ajoueCommande(user,total,panier);
+         commandeService.ajoueCommande(user,total,panier);
+         String body = "Bonjour "+userDto.getFirstName() +" "+
+                 "votre commande a bien été validé, nous vous livrons au plus vite ! "+ "\r\n" +
+                 "Bon appétit !" + "\r\n" + "A trés bientot chez OlivPizza";
+        emailSenderService.sendSimpleEmailByCom(currentUser.getUsername(),"Conformation de votre commande chez OlivPizza",
+                        body);
         panier.clear();
         count = 0;
         total=0.0;

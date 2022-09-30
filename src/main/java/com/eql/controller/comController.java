@@ -75,11 +75,13 @@ public class comController {
             model.addAttribute("connectedUser", userDto);
         }
         Livreur livreur = new Livreur();
+        List<Livreur> livreurs = livreurService.getAll();
 
         model.addAttribute(livreur);
         Commande commande = commandeService.getComById(id);
         com = commande ;
         model.addAttribute("commande",commande);
+        model.addAttribute("livreurs",livreurs);
 
         System.out.println(model);
         return "dispatchCommande";
@@ -180,6 +182,7 @@ public class comController {
         user.setFirstName(produitService.getProduitById(id).getLabel());
         model.addAttribute("user",user);
 
+
         return "evaluateProduit";
     }
     @PostMapping("/eval")
@@ -187,6 +190,7 @@ public class comController {
 
 
         model.addAttribute("user", userDto1);
+
 
         if (currentUser != null){
             UserDto userDto = userService.mapToUserDto(userService.findUserByEmail(currentUser.getUsername()));
@@ -201,5 +205,12 @@ public class comController {
         commentaireService.addCommentaire(commentaire);
 
         return "redirect:/space?evaluate";
+    }
+
+    @GetMapping("/confirmationLivreur")
+    public String home(Model model){
+
+        model.addAttribute("count",PanierController.count );
+        return "confirmationLivreur";
     }
 }

@@ -62,7 +62,8 @@
                         <h3 th:text = "${produit.label}"></h3>
                         <p style="color: #7c9192" th:text = "${produit.description}"> </p>
                         <p class="price" > <span >€ <span th:text = "${produit.prix}"></span> </span>
-                            <a th:href="@{/addToCart/{id}(id=${produit.getProduitId()})}" class="ml-2 btn btn-white btn-outline-white">Ajouter</a> </p>
+                            <a th:href="@{/addToCart/{id}(id=${produit.getProduitId()})}" class="ml-2 btn btn-white btn-outline-white">Ajouter</a>
+                            <a th:href="@{/evaluatePage/{id}(id=${produit.getProduitId()})}" class="ml-2 btn btn-white btn-outline-white">Avis</a></p>
                     </div>
                 </div>
             </div>
@@ -88,14 +89,68 @@
                         <h3 th:text = "${produit.label}"></h3>
                         <p style="color: #7c9192" th:text = "${produit.description}"> </p>
                         <p class="price" > <span >€ <span th:text = "${produit.prix}"></span> </span>
-                            <a th:href="@{/addToCart/{id}(id=${produit.getProduitId()})}" class="ml-2 btn btn-white btn-outline-white">Ajouter</a> </p>
+                            <a th:href="@{/addToCart/{id}(id=${produit.getProduitId()})}" class="ml-2 btn btn-white btn-outline-white">Ajouter</a>
+                            <a th:href="@{/evaluatePage/{id}(id=${produit.getProduitId()})}" class="ml-2 btn btn-white btn-outline-white">Avis</a></p>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <div class="container">
+        <div class="row justify-content-center mb-5 pb-3 mt-5 pt-5">
+            <div class="col-md-7 heading-section text-center ftco-animate">
+                <h2 class="mb-4">Les Boissons</h2>
+                <p class="flip"><span class="deg1"></span><span class="deg2"></span><span class="deg3"></span></p>
+            </div>
+        </div>
+    </div>
 
+    <div class="container-wrap"  >
+        <div class="row no-gutters d-flex"  >
+            <div style="margin-bottom: 2rem;" class="col-lg-4 d-flex ftco-animate" th:each="produit : ${boissons}" >
+                <div  class="services-wrap d-flex"  >
+                    <a href="#" class="img " th:style="'background-image:url('+ ${produit.image} +');'"></a>
+                    <div class="text p-4">
+                        <h3 th:text = "${produit.label}"></h3>
+                        <p style="color: #7c9192" th:text = "${produit.description}"> </p>
+                        <p class="price" > <span >€ <span th:text = "${produit.prix}"></span> </span>
+                            <a th:href="@{/addToCart/{id}(id=${produit.getProduitId()})}" class="ml-2 btn btn-white btn-outline-white">Ajouter</a>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row justify-content-center mb-5 pb-3 mt-5 pt-5">
+            <div class="col-md-7 heading-section text-center ftco-animate">
+                <h2 class="mb-4">Les Desserts</h2>
+                <p class="flip"><span class="deg1"></span><span class="deg2"></span><span class="deg3"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-wrap"  >
+        <div class="row no-gutters d-flex"  >
+            <div style="margin-bottom: 2rem;" class="col-lg-4 d-flex ftco-animate" th:each="produit : ${desserts}" >
+                <div  class="services-wrap d-flex"  >
+                    <a href="#" class="img " th:style="'background-image:url('+ ${produit.image} +');'"></a>
+                    <div class="text p-4">
+                        <h3 th:text = "${produit.label}"></h3>
+                        <p style="color: #7c9192" th:text = "${produit.description}"> </p>
+                        <p class="price" > <span >€ <span th:text = "${produit.prix}"></span> </span>
+                            <a th:href="@{/addToCart/{id}(id=${produit.getProduitId()})}" class="ml-2 btn btn-white btn-outline-white">Ajouter</a>
+                            <a th:href="@{/evaluatePage/{id}(id=${produit.getProduitId()})}" class="ml-2 btn btn-white btn-outline-white">Avis</a></p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </section>
 

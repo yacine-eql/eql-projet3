@@ -38,6 +38,12 @@ public class prodController {
         List<Produit> supremes = produitService.getSupremes();
         model.addAttribute("supremes",supremes);
 
+        List<Produit> desserts = produitService.getDesserts();
+        model.addAttribute("desserts",desserts);
+
+        List<Produit> boissons = produitService.getBoissons();
+        model.addAttribute("boissons",boissons);
+
         if (currentUser != null){
             UserDto userDto = userService.mapToUserDto(userService.findUserByEmail(currentUser.getUsername()));
             model.addAttribute("connectedUser", userDto);
@@ -53,6 +59,7 @@ public class prodController {
 
         List<Commentaire> commentaires = produitService.getProduitById(id).getCommentaires();
         model.addAttribute("commentaires",commentaires);
+        model.addAttribute("produit",produitService.getProduitById(id));
 
 
 

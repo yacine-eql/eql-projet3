@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Setter
 @Getter
@@ -24,8 +25,10 @@ public class UserDto {
     @NotEmpty(message = "address should not be empty")
     private String address;
     @NotEmpty(message = "tel should not be empty")
+    @Size( min = 10, max = 13 )
     private String tel;
     @NotEmpty(message = "password should not be empty")
+    @Size(min = 6, max = 15)
     private String password;
 
 }

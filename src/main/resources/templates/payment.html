@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+  <title>Pizza - index</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="/css/payment.css" >
+
+</head>
+<body>
+<div layout:fragment="content">
+
+
+<div class="container">
+  <div class="card">
+    <form  method="post"
+           role="form"
+           th:action="@{/validePanier}">
+      <button type="submit"  class="proceed"><svg class="sendicon" width="24" height="24" viewBox="0 0 24 24">
+        <path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"></path>
+      </svg></button>
+    </form>
+
+    <img src="https://seeklogo.com/images/V/VISA-logo-62D5B26FE1-seeklogo.com.png" class="logo-card">
+    <label>Numero carte :</label>
+    <input id="user" type="text" class="input cardnumber"  placeholder="1234 5678 9101 1121">
+    <label>Nom:</label>
+    <output class="input name"  th:text="${connectedUser.firstName +' '+ connectedUser.lastName}">
+    <label class="toleft">CCV:</label>
+    <input class="input toleft ccv" placeholder="321">
+  </div>
+  <div class="receipt">
+    <div class="col"><p>Total:</p>
+      <h2 class="cost" th:text="${total} +' €'"></h2><br>
+      <p>Nom:</p>
+      <h2 class="seller" th:text="${connectedUser.firstName +' '+ connectedUser.lastName}"></h2>
+    </div>
+    <div class="col" >
+      <p>Produits commandés:</p>
+      <table class="table table-responsive table-sm">
+        <thead>
+        <tr>
+        </tr>
+        </thead>
+        <tbody>
+        <tr  th:each="prod: ${produits?.keySet()}">
+          <th  th:text="${prod.label}"></td>
+          <td  th:text="${produits.get(prod)}"></td>
+        </tr>
+        </tbody>
+      </table>
+
+
+      </div>
+    <p class="comprobe">Ces informations vous seront envoyés par email.</p>
+  </div>
+</div>
+
+
+</div>
+</body>
+</html>

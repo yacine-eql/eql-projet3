@@ -74,7 +74,7 @@
                         <a style="color: #fac564; text-decoration: none;" th:href="@{/adminTopClients}">Liste des clients fidèles</a>
                     </div>
                     <div class="col-md-12 mb-3">
-                        <a th:href="@{/updateAccount}" class="btn btn-primary py-2 px-3">Modifier</a>
+                        <a th:href="@{/promotion}" class="btn btn-primary py-2 px-3">Promotion</a>
                     </div>
                 </div>
             </div>
@@ -82,6 +82,11 @@
             <div class="col-md-1"></div>
 
             <div class="col-md-8 ftco-animate">
+                <div th:if="${param.success}">
+                    <div class="alert alert-warning">
+                        La promo a bien été envoyée... Préparez vous ça va chauffer !
+                    </div>
+                </div>
                 <h2 style="color: white" class="h3">Liste des Clients</h2>
                 <input class="form-control"  type="text" id="myInput" onkeyup="myFunction()" placeholder="Rechecher.." >
 

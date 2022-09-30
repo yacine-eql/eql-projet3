@@ -8,6 +8,7 @@ import com.eql.service.CommandeService;
 import com.eql.service.LivreurService;
 import com.eql.service.ProduitService;
 import com.eql.service.UserService;
+import com.eql.webServices.EmailSenderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -35,7 +36,11 @@ public class AdminController {
     CommandeService commandeService;
     @Autowired
     LivreurService livreurService;
+    @Autowired
+    EmailSenderService emailSenderService;
 
+    User userToDelete;
+    Livreur livreurTodelete;
 
     @GetMapping("/updateAccounts/{id}")
     public  String  showFormForUpdate(@PathVariable(value = "id") Long id, Model model,
@@ -139,9 +144,65 @@ public class AdminController {
     }
 
     @GetMapping("/deleteLivreur/{id}")
-    public  String deletelivreur(@PathVariable(value = "id") Integer id ){
+    public  String deletelivreur(@PathVariable(value = "id") Integer id,Model model, @AuthenticationPrincipal UserDetails currentUser ){
+        if (currentUser != null){
+            UserDto userDto = userService.mapToUserDto(userService.findUserByEmail(currentUser.getUsername()));
+            model.addAttribute("connectedUser", userDto);
+        }
+         livreurTodelete = livreurService.findLivreurByDI(id);
+        return "deletePageLivreur";
+    }
 
-        livreurService.deleteLivreur(id);
+    @GetMapping("/deleteLivreur")
+    public  String deletelivreurConfirm( ){
+        livreurService.deleteLivreur(livreurTodelete.getId());
         return "redirect:/adminLivreurs?delete";
     }
+
+    @RequestMapping("/deletePageAdmin/{id}")
+    public String showDeletePageAdmin(@PathVariable(value = "id") Integer id,Model model, @AuthenticationPrincipal UserDetails currentUser ) {
+        UserDto userDto = userService.mapToUserDto(userService.findUserByEmail(currentUser.getUsername()));
+        model.addAttribute("connectedUser", userDto);
+        userToDelete =userService.findUserById(id);
+
+
+        return "deletePageAdmin";
+    }
+    @GetMapping("/deleteAdmin")
+    public  String deleteUserByAdmin1(@ModelAttribute("userToDelete") User user,Model model,@AuthenticationPrincipal UserDetails currentUser ){
+        UserDto userDto = userService.mapToUserDto(userService.findUserByEmail(currentUser.getUsername()));
+        model.addAttribute("connectedUser", userDto);
+
+        userService.deleteUser(userToDelete.getId());
+        return "redirect:/adminSpace?delete";
+    }
+
+    @GetMapping("/promotion")
+    public String promotion(Model model,@AuthenticationPrincipal UserDetails currentUser){
+        if (currentUser != null){
+            UserDto userDto = userService.mapToUserDto(userService.findUserByEmail(currentUser.getUsername()));
+            model.addAttribute("connectedUser", userDto);
+        }
+        UserDto user =new UserDto();
+        model.addAttribute("user",user);
+        model.addAttribute("count",PanierController.count );
+        return "promotion";
+    }
+
+    @PostMapping("/mailPromo")
+    public String mail(Model model,UserDto userDto1, @AuthenticationPrincipal UserDetails currentUser){
+
+        model.addAttribute("user", userDto1);
+        if (currentUser != null){
+            UserDto userDto = userService.mapToUserDto(userService.findUserByEmail(currentUser.getUsername()));
+            model.addAttribute("connectedUser", userDto);
+        }
+        List<UserDto> topList = userService.findTopUsers();
+        for (UserDto dto : topList) {
+            emailSenderService.sendSimpleEmailByCom(dto.getEmail() , userDto1.getLastName(),userDto1.getAddress());
+        }
+
+        return "redirect:/adminTopClients?success";
+    }
+
 }
