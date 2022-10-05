@@ -78,7 +78,7 @@
                         <a style="color: #fac564; text-decoration: none;" th:href="@{/adminLivreurs}">Liste des Livreurs</a>
                     </div>
                     <div class="col-md-12 mb-3">
-                        <a th:href="@{/Livreur}" class="btn btn-primary py-2 px-3">Ajouter un livreur</a>
+                        <a th:href="@{/Livreur}" class="ion-ios-add-circle" style="text-align:center; font-size: 55px; color: rgb(243, 156, 18);"></a>
                     </div>
                 </div>
             </div>
@@ -106,8 +106,8 @@
                         <td th:text = "${livreur.prenom}"></td>
                         <td th:text = "${livreur.adresse}"></td>
                         <td th:text = "${livreur.tel}"></td>
-                        <td> <a th:href="@{/updateLivreur/{id}(id=${livreur.id})}" class="btn btn-primary py-1 px-2">Modifier</a> </td>
-                        <td> <a th:href="@{/deleteLivreur/{id}(id=${livreur.id})}" class="btn btn-primary py-1 px-2">Supprimer</a> </td>
+                        <td style="text-align: center"> <a th:href="@{/updateLivreur/{id}(id=${livreur.id})}" class="ion-ios-create" style="font-size: 25px; color: rgb(243, 156, 18);"></a> </td>
+                        <td style="text-align: center"> <a th:href="@{/deleteLivreur/{id}(id=${livreur.id})}" class="ion-ios-trash" style="font-size: 25px; color: rgb(243, 156, 18);"></a> </td>
 
                     </tr>
                     </tbody>

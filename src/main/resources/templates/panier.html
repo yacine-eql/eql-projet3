@@ -38,7 +38,7 @@
                         <p><span>Téléphone :</span> <a style="color: #fac564; text-decoration: none;" th:text="${connectedUser.tel}" href="mailto:info@yoursite.com"></a></p>
                     </div>
                     <div class="col-md-12 mb-3">
-                        <button type="submit" class="btn btn-primary py-2 px-3">Modifier</button>
+                        <a th:href="@{/updateAccount}" type="submit" class="btn btn-primary py-2 px-3">Modifier</a>
                     </div>
                 </div>
             </div>

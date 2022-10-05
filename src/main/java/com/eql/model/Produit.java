@@ -1,5 +1,8 @@
 package com.eql.model;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,6 +15,8 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class Produit {
 
     @Id
@@ -21,6 +26,7 @@ public class Produit {
     private String description;
     private double prix;
     private String image;
+    private boolean isActive = false;
 
     public List<LigneCom> getLigneComs() {
         return ligneComs;
@@ -55,8 +61,7 @@ public class Produit {
         this.prix = prix;
     }
 
-    public Produit() {
-    }
+
 
     public  void addLigneComP(LigneCom c){
         ligneComs.add(c);
@@ -115,6 +120,14 @@ public class Produit {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 
     @Override

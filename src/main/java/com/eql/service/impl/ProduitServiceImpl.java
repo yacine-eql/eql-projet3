@@ -55,6 +55,19 @@ public class ProduitServiceImpl implements ProduitService {
     }
 
     @Override
+    public void deleteProduct(Integer id) {
+
+        Produit produit = produitRepository.findById(id).get();
+        produit.setActive(true);
+        produitRepository.save(produit);
+    }
+
+    @Override
+    public void updateProduct(Produit produit) {
+        produitRepository.save(produit);
+    }
+
+    @Override
     public Produit getProduitById(int id) {
         return produitRepository.findById(id).get();
     }

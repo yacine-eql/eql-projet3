@@ -1,6 +1,5 @@
 package com.eql.controller;
 
-import com.eql.config.SpringSecurity;
 import com.eql.dto.UserDto;
 import com.eql.model.Commande;
 import com.eql.model.Produit;
@@ -22,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 @Controller
@@ -69,7 +68,7 @@ public class AuthController {
         }
         if(result.hasErrors()){
             model.addAttribute("user",userDto);
-            return "/register";
+            return "register";
         }
         userService.saveUser(userDto);
         return "redirect:/login?success";
@@ -144,6 +143,16 @@ public class AuthController {
     @GetMapping("/adminProd")
     public String produits(Model model,@AuthenticationPrincipal UserDetails currentUser) {
         List<Produit> produits = produitService.getAllProduct();
+
+        for (Iterator<Produit> it = produits.iterator(); it.hasNext();) {
+            Produit s = it.next();
+
+            if (s.isActive()){
+                it.remove();
+            }
+        }
+
+
         model.addAttribute("produits", produits);
         if (currentUser != null) {
             UserDto userDto = userService.mapToUserDto(userService.findUserByEmail(currentUser.getUsername()));
@@ -179,6 +188,7 @@ public class AuthController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null)
             new SecurityContextLogoutHandler().logout(request, response, authentication);
+
         userService.deleteUser(userDto.getId());
         return "redirect:/login?delete";
     }

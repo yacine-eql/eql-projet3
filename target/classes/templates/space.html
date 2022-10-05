@@ -85,7 +85,7 @@
                         <td th:text = "${#dates.format(commande.commandeDate, 'dd-MMM-yyyy')}">
                         <td th:text = "${commande.getLigneComs()}"></td>
                         <td th:text = "${commande.facture.montant+ '€'}"></td>
-                        <td> <a th:href="@{/evaluateCommande/{id}(id=${commande.commandeId})}"  class="btn btn-primary py-1 px-2">Evaluer</a> </td>
+                        <td style="text-align: center"> <a th:href="@{/evaluateCommande/{id}(id=${commande.commandeId})}"  class="ion-ios-create" style="font-size: 25px; color: rgb(243, 156, 18);"></a> </td>
 
                     </tr>
                     </tbody>

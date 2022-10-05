@@ -46,7 +46,7 @@
                 <li class="nav-item"><a th:href="@{/adminCommandes}" class="nav-link"><span class=" icon fa fa-list"> </span> <span class="text"> COMMANDES </span></a></li>
                 <li class="nav-item"><a th:href="@{/adminSpace}" class="nav-link"><span class=" icon fa fa-users"> </span> <span class="text"> CLIENTS </span></a></li>
                 <li  class="nav-item"><a th:href="@{/logout}" class="nav-link "><span class=" icon fa fa-sign-out"> </span> <span class="text"> SE DECONNECTER </span> </a></li>
-                <li  class=" nav-item"><a href="#"class="nav-link"><span class=" icon icon-user"></span> <span class="text" th:text="${connectedUser.firstName}"> </span></a></li>
+                <li  class=" nav-item"><a href="#"class="nav-link"><span class="icon fa fa-user" ></span> <span class="text" th:text="${connectedUser.firstName}"> </span></a></li>
             </ul>
         </div>
     </div>
@@ -76,9 +76,7 @@
 
                         <a style="color: #fac564; text-decoration: none;" th:href="@{/adminTopClients}">Liste des clients fidèles</a>
                     </div>
-                    <div class="col-md-12 mb-3">
-                        <a th:href="@{/updateAccount}" class="btn btn-primary py-2 px-3">Modifier</a>
-                    </div>
+
                 </div>
             </div>
 
@@ -107,8 +105,8 @@
                         <td th:text = "${user.email}"></td>
                         <td th:text = "${user.tel}"></td>
                         <td th:text = "${user.address}"></td>
-                        <td> <a th:href="@{/updateAccounts/{id}(id=${user.id})}"  class="btn btn-primary py-1 px-2">Modifier</a> </td>
-                        <td> <a th:href="@{/delete/{id}(id=${user.id})}"  class="btn btn-primary py-1 px-2">Supprimer</a> </td>
+                        <td style="text-align: center"> <a th:href="@{/updateAccounts/{id}(id=${user.id})}"  class="ion-ios-create" style="font-size: 25px; color: rgb(243, 156, 18);"></a> </td>
+                        <td style="text-align: center"> <a th:href="@{/deletePageAdmin/{id}(id=${user.id})}">  <span  class="ion-ios-trash" style="font-size: 25px; color: rgb(243, 156, 18);"></span></a> </td>
 
                     </tr>
                     </tbody>

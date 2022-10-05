@@ -85,7 +85,7 @@ public class PanierController {
             }
 
         }
-        System.out.println("heeeeeeeeeeeeeeeeeellllllllllllllllllllloooooooooooooooooo"+count);
+
         return "redirect:/carte";
     }
 
@@ -141,7 +141,7 @@ public class PanierController {
          String body = "Bonjour "+userDto.getFirstName() +" "+
                  "votre commande a bien été validé, nous vous livrons au plus vite ! "+ "\r\n" +
                  "Bon appétit !" + "\r\n" + "A trés bientot chez OlivPizza";
-        emailSenderService.sendSimpleEmailByCom(currentUser.getUsername(),"Conformation de votre commande chez OlivPizza",
+        emailSenderService.sendSimpleEmailByCom(currentUser.getUsername(),"Confirmation de votre commande chez OlivPizza",
                         body);
         panier.clear();
         count = 0;

@@ -69,7 +69,7 @@
                         <a style="color: #fac564; text-decoration: none;" th:href="@{/adminProd}">Liste des Produits</a>
                     </div>
                     <div class="col-md-12 mb-3">
-                    <button style="text-align:center;" type="submit" class="btn btn-primary py-2 px-3">Ajouter un produit</button>
+                    <a th:href="@{/product}"  type="submit" class="ion-ios-add-circle" style="text-align:center; font-size: 55px; color: rgb(243, 156, 18);"></a>
                 </div>
                 </div>
             </div>
@@ -77,6 +77,21 @@
             <div class="col-md-1"></div>
 
             <div class="col-md-8 ftco-animate">
+                <div th:if="${param.success}">
+                    <div class="alert alert-warning">
+                        Le produit a bien été rajouté !
+                    </div>
+                </div>
+                <div th:if="${param.update}">
+                    <div class="alert alert-warning">
+                        Le produit a bien modifié !
+                    </div>
+                </div>
+                <div th:if="${param.delete}">
+                    <div class="alert alert-warning">
+                        Le produit a bien supprimé !
+                    </div>
+                </div>
                 <h2 style="color: white" class="h3">Liste des Produits</h2>
                 <input class="form-control"  type="text" id="myInput" onkeyup="myFunction()" placeholder="Rechecher.." >
 
@@ -99,8 +114,8 @@
                         <td th:text = "${produit.getCategorie().label}"></td>
                         <td th:text = "${produit.prix}"> <span> € </span>  </td>
 
-                        <td> <button type="submit" class="btn btn-primary py-1 px-2">Modifier</button> </td>
-                        <td> <button type="submit" class="btn btn-primary py-1 px-2">Supprimer</button> </td>
+                        <td style="text-align: center"> <a th:href="@{/updateProduct/{id}(id=${produit.produitId})}" type="submit" class="ion-ios-create" style="font-size: 25px; color: rgb(243, 156, 18);"></a> </td>
+                        <td style="text-align: center"> <a th:href="@{/deleteProduct/{id}(id=${produit.produitId})}" type="submit" class="ion-ios-trash" style="font-size: 25px; color: rgb(243, 156, 18);"></a> </td>
                     </tr>
 
                     </tbody>

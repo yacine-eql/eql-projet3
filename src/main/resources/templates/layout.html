@@ -38,16 +38,16 @@
         </button>
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active"><a th:href="@{/index}" class="nav-link"><span class=" icon fa fa-home"> </span> <span class="text"> ACCUEIL </span> </a></li>
-                <li class="nav-item"><a th:href="@{/carte}" class="nav-link"><span class=" icon fa fa-list"> </span> <span class="text"> CARTE </span></a></li>
-                <li class="nav-item"><a th:href="@{/engagement}" class="nav-link"> <span class=" icon fa fa-check"> </span> <span class="text"> ENGAGEMENTS </span></a></li>
-                <li class="nav-item "><a th:href="@{/contact}" class= "nav-link "> <span class=" icon fa fa-envelope"> </span> <span class="text"> CONTACT </span></a></li>
-                <li sec:authorize="!hasRole('USER')&&!hasRole('ADMIN')" class="nav-item"><a th:href="@{/login}" class="nav-link"><span class=" icon fa fa-at"> </span> <span class="text"> CONNEXION </span> </a></li>
-                <li sec:authorize="hasRole('USER')" class="nav-item"><a th:href="@{/space}" class="nav-link"><span class=" icon fa fa-cloud"> </span> <span class="text"> MON ESPACE </span> </a></li>
-                <li sec:authorize="hasRole('ADMIN')" class="nav-item"><a th:href="@{/adminSpace}" class="nav-link"><span class=" icon fa fa-cloud"> </span> <span class="text"> ESPACE ADMIN </span>  </a></li>
-                <li sec:authorize="!hasRole('USER')&&!hasRole('ADMIN')" class="nav-item"><a th:href="@{/register}" class="nav-link"><span class=" icon fa fa-user"> </span> <span class="text"> CREER UN COMPTE </span> </a></li>
-                <li sec:authorize="hasRole('USER')||hasRole('ADMIN')" class="nav-item"><a th:href="@{/logout}" class="nav-link "><span class=" icon fa fa-sign-out"> </span> <span class="text"> SE DECONNECTER </span> </a></li>
-                <li sec:authorize="hasRole('USER')||hasRole('ADMIN')" th:if="${connectedUser!=null}" class=" nav-item"><a href="#"class="nav-link"><span class=" icon icon-user"></span> <span class="text" th:text="${connectedUser.firstName}"> </span></a></li>
+                <li class="nav-item active"><a th:href="@{/index}" class="nav-link"><span class=" icon fa fa-home" style="color: #fac564;"> </span> <span class="text"> ACCUEIL </span> </a></li>
+                <li class="nav-item"><a th:href="@{/carte}" class="nav-link"><span class=" icon fa fa-list" style="color: #fac564;"> </span> <span class="text"> CARTE </span></a></li>
+                <li class="nav-item"><a th:href="@{/engagement}" class="nav-link"> <span class=" icon fa fa-check" style="color: #fac564;"> </span> <span class="text"> ENGAGEMENTS </span></a></li>
+                <li class="nav-item "><a th:href="@{/contact}" class= "nav-link "> <span class=" icon fa fa-envelope" style="color: #fac564;"> </span> <span class="text"> CONTACT </span></a></li>
+                <li sec:authorize="!hasRole('USER')&&!hasRole('ADMIN')" class="nav-item"><a th:href="@{/login}" class="nav-link"><span class=" icon fa fa-at" style="color: #fac564;"> </span> <span class="text"> CONNEXION </span> </a></li>
+                <li sec:authorize="hasRole('USER')" class="nav-item"><a th:href="@{/space}" class="nav-link"><span class=" icon fa fa-cloud" style="color: #fac564;"> </span> <span class="text"> MON ESPACE </span> </a></li>
+                <li sec:authorize="hasRole('ADMIN')" class="nav-item"><a th:href="@{/adminSpace}" class="nav-link"><span class=" icon fa fa-cloud" style="color: #fac564;"> </span> <span class="text"> ESPACE ADMIN </span>  </a></li>
+                <li sec:authorize="!hasRole('USER')&&!hasRole('ADMIN')" class="nav-item"><a th:href="@{/register}" class="nav-link"><span class=" icon fa fa-user" style="color: #fac564;"> </span> <span class="text"> CREER UN COMPTE </span> </a></li>
+                <li sec:authorize="hasRole('USER')||hasRole('ADMIN')" class="nav-item"><a th:href="@{/logout}" class="nav-link "><span class=" icon fa fa-sign-out" style="color: #fac564;"> </span> <span class="text"> SE DECONNECTER </span> </a></li>
+                <li sec:authorize="hasRole('USER')||hasRole('ADMIN')" th:if="${connectedUser!=null}" class=" nav-item"><a href="#"class="nav-link"><span class=" icon icon-user" style="color: #fac564;"></span> <span class="text" th:text="${connectedUser.firstName}"> </span></a></li>
                 <li sec:authorize="!hasRole('ADMIN')" class=" nav-item"><a style="margin-left: 94%; " th:href="@{/voirPanier}" >
                     <span id="boot-icon" class="bi bi-cart" style="font-size: 40px; color: rgb(243, 156, 18);"></span> </a></li>
                 <span sec:authorize="!hasRole('ADMIN')"th:if="${count!=0}" class="text badge badge-warning" id='lblCartCount' th:text="${count}"> </span>
@@ -70,9 +70,9 @@
                     <h2 class="ftco-heading-2">Oliv'pizza</h2>
                     <p>Livraison de pizza à domicile </p>
                     <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
-                        <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                        <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                        <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                        <li class="ftco-animate"><a ><span class="icon-twitter"></span></a></li>
+                        <li class="ftco-animate"><a ><span class="icon-facebook"></span></a></li>
+                        <li class="ftco-animate"><a ><span class="icon-instagram"></span></a></li>
                     </ul>
                 </div>
             </div>
@@ -82,10 +82,10 @@
                     <div class="block-21 mb-4 d-flex">
                         <a class="blog-img mr-4" th:style="'background-image:url(' + @{/images/pizza-1.jpg} + ');'"></a>
                         <div class="text">
-                            <h3 class="heading"><a href="#">Lundi-Vendredi : 11h-14h | 18h-23h</a></h3>
-                            <h3 class="heading"><a href="#">Samedi : 12h-15h | 17h-23h</a></h3>
-                            <h3 class="heading"><a href="#">Dimanche : 18h-23h </a></h3>
-                            <h3 class="heading"><a href="#">Fermé les jours fériés </a></h3>
+                            <h3 class="heading"><a >Lundi-Vendredi : 11h-14h | 18h-23h</a></h3>
+                            <h3 class="heading"><a >Samedi : 12h-15h | 17h-23h</a></h3>
+                            <h3 class="heading"><a >Dimanche : 18h-23h </a></h3>
+                            <h3 class="heading"><a >Fermé les jours fériés </a></h3>
 
                         </div>
                     </div>
@@ -96,9 +96,9 @@
                 <div class="ftco-footer-widget mb-4 ml-md-4">
                     <h2 class="ftco-heading-2">Services</h2>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="py-2 d-block">Pizza</a></li>
-                        <li><a href="#" class="py-2 d-block">Livraisons</a></li>
-                        <li><a href="#" class="py-2 d-block">Suivi</a></li>
+                        <li><h5 class="heading"> <a  class="py-2 d-block ">Pizza</a> </h5></li>
+                        <li><h5 class="heading"> <a  class="py-2 d-block ">Livraisons</a></h5></li>
+                        <li><h5 class="heading"> <a  class="py-2 d-block ">Suivi</a></h5></li>
 
                     </ul>
                 </div>
@@ -109,8 +109,8 @@
                     <div class="block-23 mb-3">
                         <ul>
                             <li><span class="icon icon-map-marker"></span><span class="text">210 Rue La fayette 75010 PARIS</span></li>
-                            <li><a href="#"><span class="icon icon-phone"></span><span class="text">0140433592</span></a></li>
-                            <li><a href="#"><span class="icon icon-envelope"></span><span class="text">yacine.saib@gmail.com</span></a></li>
+                            <li><a th:href="@{contact}"><span class="icon icon-phone"></span><span class="text">0140433592</span></a></li>
+                            <li><a th:href="@{contact}"><span class="icon icon-envelope"></span><span class="text">yacine.saib@gmail.com</span></a></li>
                         </ul>
                     </div>
                 </div>

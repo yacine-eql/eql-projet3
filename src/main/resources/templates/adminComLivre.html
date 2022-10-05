@@ -74,9 +74,7 @@
 
                         <a style="color: #fac564; text-decoration: none;" th:href="@{/adminComLivre}">Commandes livrées</a>
                     </div>
-                    <div class="col-md-12 mb-3">
-                        <a th:href="@{/updateAccount}" class="btn btn-primary py-2 px-3">Modifier</a>
-                    </div>
+
                 </div>
             </div>
 
@@ -84,12 +82,11 @@
 
             <div class="col-md-8 ftco-animate">
                 <h2 style="color: white" class="h3">Liste des commandes</h2>
-                <input class="form-control"  type="text" id="myInput" onkeyup="myFunction()" placeholder="Rechecher.." >
 
 
                 <table style="color: #adb5bd" class="table table-responsive table-sm">
                     <thead >
-                    <tr  >
+                    <tr style="color: #fac564;" class="header" >
                         <th>Numéro </th>
                         <th>Date </th>
                         <th>Produits</th>
@@ -115,26 +112,7 @@
         </div>
     </div>
 </section>
-<script>
-    function myFunction() {
-        var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("myInput");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
-        tr = table.getElementsByTagName("tr");
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[0];
-            if (td) {
-                txtValue = td.textContent || td.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-        }
-    }
-</script>
+
 
 
 
