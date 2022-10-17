@@ -1,5 +1,7 @@
 package com.eql.model;
 
+import lombok.AllArgsConstructor;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+
 public class Livreur {
 
     @Id
@@ -34,6 +37,16 @@ public class Livreur {
         commandes.add(c);
         c.setLivreur(this);
 
+    }
+
+    public Livreur(String nom, String prenom, String tel, String adresse) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.tel = tel;
+        this.adresse = adresse;
+    }
+
+    public Livreur() {
     }
 
     public int getId() {

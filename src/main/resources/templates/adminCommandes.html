@@ -82,14 +82,15 @@
 
             <div class="col-md-8 ftco-animate">
                 <h2 style="color: white" class="h3">Liste des commandes</h2>
+                <input class="form-control"  type="text" id="myInput" onkeyup="myFunction()" placeholder="Rechecher.." >
 
 
-
-                <table style="color: #adb5bd" class="table table-responsive table-sm">
+                <table id="myTable" style="color: #adb5bd" class="table table-responsive table-sm">
                     <thead >
                     <tr  style="color: #fac564;" class="header">
-                        <th>Numéro </th>
-                        <th>Date </th>
+                        <th>Nom</th>
+                        <th>Numéro</th>
+                        <th>Date</th>
                         <th>Produits</th>
                         <th>Montant</th>
                         <th>Livreur</th>
@@ -99,6 +100,7 @@
                     </thead>
                     <tbody>
                     <tr th:each = "commande : ${commandes}">
+                        <td th:text = "${commande.getUser().name}"></td>
                         <td th:text = "${commande.commandeId}"></td>
                         <td th:text = "${#dates.format(commande.commandeDate, 'dd-MMM-yyyy')}">
                         <td th:text = "${commande.getLigneComs()}"></td>
@@ -106,7 +108,7 @@
                         <td th:text= "${commande.getLivreur()?.prenom}"></td>
                         <td style="text-align: center">
                         <a th:href="@{/dispatch/{id}(id=${commande.commandeId})}"  class="ion-ios-attach" style=" font-size: 25px; color: rgb(243, 156, 18);"></a> </td>
-                        </td>
+
                     </tr>
                     </tbody>
                 </table>
@@ -115,7 +117,26 @@
         </div>
     </div>
 </section>
-
+<script>
+    function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
 
 
 

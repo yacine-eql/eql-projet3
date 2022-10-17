@@ -92,6 +92,7 @@ public class comController {
     public String updateLivreurByAdmin(Commande commande,
                                        @ModelAttribute("livreur") Livreur livreur){
 
+        commande.setUser(com.getUser());
         commande.setCommandeId(com.getCommandeId());
         commande.setCommandeDate(com.getCommandeDate());
         commande.setLigneComs(com.getLigneComs());

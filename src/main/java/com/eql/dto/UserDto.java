@@ -31,4 +31,12 @@ public class UserDto {
     @Size(min = 6, max = 15)
     private String password;
 
+    public UserDto(String firstName, String lastName, String email, String address, String tel, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.address = address;
+        this.tel = tel;
+        this.password = password;
+    }
 }
